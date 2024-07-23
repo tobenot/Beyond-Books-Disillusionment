@@ -1,0 +1,146 @@
+[
+    {
+      "id": "1",
+      "name": "事件牌: 上课铃声",
+      "type": "event",
+      "description": "上课铃声响了，班主任来了。",
+      "choices": [
+        {
+          "text": "认真上课",
+          "effect": "increment.技能.学术.2"
+        },
+        {
+          "text": "开小差",
+          "effect": "decrement.技能.学术.1"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "事件牌: 班会",
+      "type": "event",
+      "description": "今天班会的主题是团队合作。",
+      "choices": [
+        {
+          "text": "积极参与",
+          "effect": "increment.技能.社交.2"
+        },
+        {
+          "text": "保持沉默",
+          "effect": "none"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "事件牌: 午餐时间",
+      "type": "event",
+      "description": "午休时间到了，你需要决定去哪吃午餐。",
+      "choices": [
+        {
+          "text": "去食堂",
+          "effect": "increment.状态.饱腹感.3"
+        },
+        {
+          "text": "留在教室自习",
+          "effect": "increment.技能.学术.1"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "事件牌: 体育课",
+      "type": "event",
+      "description": "今天是体育课。",
+      "choices": [
+        {
+          "text": "积极参与",
+          "effect": "increment.状态.体力.2"
+        },
+        {
+          "text": "偷懒",
+          "effect": "decrement.状态.体力.1"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "事件牌: 期中考试",
+      "type": "event",
+      "description": "期中考试来了，你需要复习吗？",
+      "choices": [
+        {
+          "text": "认真复习",
+          "effect": "increment.技能.学术.3"
+        },
+        {
+          "text": "临时抱佛脚",
+          "effect": "none"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "事件牌: 同学聚会",
+      "type": "event",
+      "description": "你受邀参加同学聚会。",
+      "choices": [
+        {
+          "text": "参加",
+          "effect": "increment.技能.社交.2"
+        },
+        {
+          "text": "拒绝",
+          "effect": "none"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "事件牌: 课外活动",
+      "type": "event",
+      "description": "学校组织了一次课外活动。",
+      "choices": [
+        {
+          "text": "参加",
+          "effect": "increment.状态.快乐.2"
+        },
+        {
+          "text": "不参加",
+          "effect": "decrement.状态.快乐.1"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "事件牌: 图书馆学习",
+      "type": "event",
+      "description": "图书馆提供了安静的学习环境。",
+      "choices": [
+        {
+          "text": "在图书馆学数学",
+          "effect": "increment.技能.数学.2"
+        },
+        {
+          "text": "在图书馆学历史",
+          "effect": "increment.技能.历史.2"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "事件牌: 校园打扫",
+      "type": "event",
+      "description": "今天是校园大扫除日。",
+      "choices": [
+        {
+          "text": "积极参与",
+          "effect": "increment.状态.关爱.2"
+        },
+        {
+          "text": "不参与",
+          "effect": "decrement.状态.关爱.1"
+        }
+      ]
+    }
+  ]
