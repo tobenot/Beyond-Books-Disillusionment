@@ -64,21 +64,44 @@ function updateTagsDisplay() {
   const tagsDisplay = document.getElementById('tags-display');
   tagsDisplay.innerHTML = '';
   if (typeof window.tags === 'object' && window.tags !== null && typeof window.tagsConfig === 'object' && window.tagsConfig !== null) {
-    const sortedPaths = Object.keys(window.tags).sort((a, b) => {
-      const tagA = getConfig(window.tagsConfig, a);
-      const tagB = getConfig(window.tagsConfig, b);
-      return (tagB.priority || 0) - (tagA.priority || 0);
-    });
+      const allTags = [];
 
-    sortedPaths.forEach(path => {
-      displayTag(tagsDisplay, path, window.tags, window.tagsConfig);
-    });
+      collectTags(window.tags, '', allTags);
+
+      allTags.sort((a, b) => b.priority - a.priority);
+
+      allTags.forEach(tag => {
+          displayTag(tagsDisplay, tag.path, window.tags, window.tagsConfig);
+      });
   }
 }
 
-function getConfig(config, path) {
+function collectTags(tags, currentPath, allTags) {
+  for (const key in tags) {
+    console.log('currentPath' + currentPath);
+    const newPath = currentPath ? `${currentPath}.${key}` : key;
+    const tagConfig = getConfig(newPath);
+    if (typeof tags[key] === 'object' && tags[key] !== null && tagConfig.value === undefined) {
+      collectTags(tags[key], newPath, allTags);
+    } else {
+      console.log(tags);
+      console.log(newPath);
+      console.log(getValue(newPath));
+      const tagValue = getValue(newPath);
+      if (!tagConfig.hidden && tagValue !== 0) {
+        allTags.push({
+          path: newPath,
+          priority: tagConfig.priority || 0,
+          value: tagValue,
+        });
+      }
+    }
+  }
+}
+
+function getConfig(path) {
   const keys = path.split('.');
-  let current = config;
+  let current = window.tagsConfig;
   for (const key of keys) {
     if (!current[key]) return {};
     current = current[key];
@@ -86,9 +109,9 @@ function getConfig(config, path) {
   return current;
 }
 
-function getValue(tags, path) {
+function getValue(path) {
   const keys = path.split('.');
-  let current = tags;
+  let current = window.tags;
   for (const key of keys) {
     if (!current[key]) return 0;
     current = current[key];
@@ -96,25 +119,16 @@ function getValue(tags, path) {
   return current.value || 0;
 }
 
-function displayTag(container, path, tags, config) {
-  const tagConfig = getConfig(config, path);
-  const tagValue = getValue(tags, path);
+function displayTag(container, path) {
+  const tagConfig = getConfig(path);
+  const tagValue = getValue(path);
 
-  if (typeof tagConfig === 'object' && tagConfig.value === undefined) {
-    for (const key in tagConfig) {
-      displayTag(container, `${path}.${key}`, tags, config);
-    }
-  } else {
-    if (tagConfig.hidden) return;
-    if (tagValue === 0) return;
-    
-    const tagDiv = document.createElement('div');
-    tagDiv.innerText = `${path}: ${tagValue}`;
-    if (tagConfig.color) {
-      tagDiv.style.color = tagConfig.color;
-    }
-    container.appendChild(tagDiv);
+  const tagDiv = document.createElement('div');
+  tagDiv.innerText = `${path}: ${tagValue}`;
+  if (tagConfig.color) {
+    tagDiv.style.color = tagConfig.color;
   }
+  container.appendChild(tagDiv);
 }
 
 document.getElementById('continue-button').onclick = startGame;
