@@ -1,47 +1,32 @@
 {
   "状态": {
-    "幸运": {
-      "value": 0,
-      "priority": 1,
+    "快乐": {
+      "value": 3,
+      "priority": 10,
       "color": "green",
       "hidden": false
     },
-    "饱腹感": {
-      "value": 0,
-      "priority": 2,
+    "精力": {
+      "value": 3,
+      "priority": 5,
       "color": "orange",
-      "hidden": false
-    },
-    "体力": {
-      "value": 0,
-      "priority": 3,
-      "color": "red",
       "hidden": false
     }
   },
   "技能": {
-    "学术": {
-      "value": 0,
-      "priority": 1,
-      "color": "blue",
+    "英语": {
+      "value": 100,
+      "color": "red",
       "hidden": false
     },
-    "社交": {
-      "value": 0,
-      "priority": 1,
-      "color": "purple",
+    "语文": {
+      "value": 60,
+      "color": "orange",
       "hidden": false
     },
     "数学": {
-      "value": 0,
-      "priority": 2,
+      "value": 19,
       "color": "blue",
-      "hidden": false
-    },
-    "历史": {
-      "value": 0,
-      "priority": 2,
-      "color": "brown",
       "hidden": false
     }
   }

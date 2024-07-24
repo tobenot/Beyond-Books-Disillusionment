@@ -9,7 +9,9 @@ function loadTagsConfig() {
     .then(response => response.json())
     .then(data => {
       tagsConfig = data;
+      tags = tagsConfig;
       window.tagsConfig = tagsConfig;
+      window.tags = tags;
       if (Object.keys(tagsConfig).length === 0) {
         console.warn('Warning: Tags config is empty.');
       }
@@ -20,12 +22,12 @@ function loadTagsConfig() {
 }
 
 function loadTags() {
-  const storedTags = localStorage.getItem('tags');
+  /*const storedTags = localStorage.getItem('tags');
   if (storedTags) {
     tags = JSON.parse(storedTags);
   } else {
     tags = {};
-  }
+  }*/
 }
 
 function saveTags() {

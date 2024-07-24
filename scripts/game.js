@@ -68,15 +68,53 @@ function updateTagsDisplay() {
   tagsDisplay.innerHTML = '';
   if (typeof window.tags === 'object' && window.tags !== null && typeof window.tagsConfig === 'object' && window.tagsConfig !== null) {
     const allTags = [];
-
     collectTags(window.tags, '', allTags);
-
     allTags.sort((a, b) => b.priority - a.priority);
-
     allTags.forEach(tag => {
       displayTag(tagsDisplay, tag.path, window.tags, window.tagsConfig);
     });
   }
+
+  // Check for bad ending conditions
+  const happiness = getValue("状态.快乐");
+  const energy = getValue("状态.精力");
+  if (happiness <= 0) {
+      endGame("bad_happiness");
+  } else if (energy <= 0) {
+      endGame("bad_energy");
+  }
+
+  // Check for winning conditions
+  const academics = getValue("技能.英语");
+  const social = getValue("技能.语文");
+  const math = getValue("技能.数学");
+  if (academics >= 100 && social >= 100 && math >= 100) {
+      endGame("good");
+  }
+}
+
+function endGame(result) {
+  const cardDisplay = document.getElementById('card-display');
+  if (result === "bad_happiness") {
+      // Bad ending message for happiness zero
+      cardDisplay.innerHTML = `
+          <h2>你失败了！</h2>
+          <br><p>快乐归零，道心破碎</p>
+      `;
+  } else if (result === "bad_energy") {
+      // Bad ending message for energy zero
+      cardDisplay.innerHTML = `
+          <h2>你失败了！</h2>
+          <br><p>精力耗尽，疲惫不堪</p>
+      `;
+  } else if (result === "good") {
+      // Good ending message
+      cardDisplay.innerHTML = `
+          <h2>你赢了！</h2>
+          <p>在英语、语文和数学三大科目中都取得了高分。这比现实简单多了吧。</p>
+      `;
+  }
+  document.getElementById('continue-button').style.display = 'none';
 }
 
 function collectTags(tags, currentPath, allTags) {
