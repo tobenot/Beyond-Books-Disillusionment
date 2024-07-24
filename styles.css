@@ -195,4 +195,21 @@ body {
     #tags-display div {
         padding: 8px;
     }
+
+    .game-container {
+        padding: 16px;
+        margin-top: 16px;
+    }
+
+    .main-content {
+        padding: 0 16px;
+    }
+
+    .card-display {
+        margin-bottom: 16px;
+    }
+
+    .choices {
+        margin-top: 16px;
+    }
 }
