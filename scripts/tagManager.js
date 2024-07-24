@@ -1,5 +1,23 @@
 // tagManager.js
+
 let tags = {};
+let tagsConfig = {};
+
+function loadTagsConfig() {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  fetch(`config/tagsConfig.json?v=${timestamp}`)
+    .then(response => response.json())
+    .then(data => {
+      tagsConfig = data;
+      window.tagsConfig = tagsConfig;
+      if (Object.keys(tagsConfig).length === 0) {
+        console.warn('Warning: Tags config is empty.');
+      }
+    })
+    .catch(error => {
+      console.error('Error loading tags config:', error);
+    });
+}
 
 function loadTags() {
   const storedTags = localStorage.getItem('tags');
@@ -8,7 +26,6 @@ function loadTags() {
   } else {
     tags = {};
   }
-  console.log('loadTags tags = ',tags);
 }
 
 function saveTags() {
@@ -16,26 +33,22 @@ function saveTags() {
 }
 
 function findTag(path) {
-    const keys = path.split('.');
-    let current = tags;
-    for (const key of keys) {
-      if (!current[key]) {
-        current[key] = {};  // 如果找不到当前键，则创建一个新的对象
-        current[key].value = 0;
-      }
-      current = current[key];
+  const keys = path.split('.');
+  let current = tags;
+  for (const key of keys) {
+    if (!current[key]) {
+      current[key] = {};
     }
-    return current;
+    current = current[key];
   }
-  
+  return current;
+}
 
 function updateTag(path, value) {
   const tag = findTag(path);
-  console.log('updateTag:', path, value);
   if (tag) {
-    tag.value += value;
+    tag.value = (tag.value || 0) + value;
     saveTags();
-    console.log('saveTags:', path, tag.value);
   } else {
     console.error(`Tag ${path} not found`);
   }
@@ -49,6 +62,7 @@ function calculateWeight(path) {
 function getSubTagWeights(path) {
   const tag = findTag(path);
   if (!tag) return 0;
+
   let total = 0;
   if (typeof tag === 'object') {
     for (const key in tag) {
@@ -60,9 +74,10 @@ function getSubTagWeights(path) {
   return total;
 }
 
+loadTagsConfig();
 loadTags();
 
-export { tags, findTag, updateTag, calculateWeight, getSubTagWeights };
+export { tags, tagsConfig, findTag, updateTag, calculateWeight, getSubTagWeights };
 
 window.updateTag = updateTag;
 window.tags = tags;

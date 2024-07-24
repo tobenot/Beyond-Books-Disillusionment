@@ -22,17 +22,16 @@ function displayCard(card) {
 
   const buttons = cardDisplay.querySelectorAll('.choice-button');
   buttons.forEach((button, index) => {
-    button.addEventListener('click', () => makeChoice(card.choices[index].effect, card.choices[index].text));
+    button.addEventListener('click', () => makeChoice(card.choices[index].effect, card.choices[index].text, card.choices[index].description));
   });
 }
 
-function makeChoice(effect, choiceText) {
+function makeChoice(effect, choiceText, description) {
   applyEffect(effect);
 
   const resultText = document.createElement('p');
-  resultText.textContent = `你选择了: ${choiceText}. 影响: ${effect}`;
+  resultText.innerHTML = `${choiceText}.<br><br>${description}`;  
 
-  // Hide the card details and only show the result text and "下一天" button
   const cardDisplay = document.getElementById('card-display');
   cardDisplay.innerHTML = '';
   cardDisplay.appendChild(resultText);
@@ -55,38 +54,65 @@ function applyEffect(effect) {
     case 'decrement':
       window.updateTag(path, -parseInt(value));
       break;
-    case 'changeScene':
-      loadScene(path);
-      break;
     default:
       break;
   }
 }
 
-function loadScene(scene) {
-  // Implementation for loading new scene cards
-}
-
 function updateTagsDisplay() {
+  console.log(window.tagsConfig);
   const tagsDisplay = document.getElementById('tags-display');
   tagsDisplay.innerHTML = '';
-  if (typeof window.tags === 'object' && window.tags !== null) {
-    for (const key in window.tags) {
-      if (typeof window.tags[key] === 'object') {
-        displayTag(tagsDisplay, key, window.tags[key]);
-      }
-    }
+  if (typeof window.tags === 'object' && window.tags !== null && typeof window.tagsConfig === 'object' && window.tagsConfig !== null) {
+    const sortedPaths = Object.keys(window.tags).sort((a, b) => {
+      const tagA = getConfig(window.tagsConfig, a);
+      const tagB = getConfig(window.tagsConfig, b);
+      return (tagB.priority || 0) - (tagA.priority || 0);
+    });
+
+    sortedPaths.forEach(path => {
+      displayTag(tagsDisplay, path, window.tags, window.tagsConfig);
+    });
   }
 }
 
-function displayTag(container, path, tag) {
-  if (typeof tag === 'object') {
-    for (const key in tag) {
-      displayTag(container, `${path}.${key}`, tag[key]);
+function getConfig(config, path) {
+  const keys = path.split('.');
+  let current = config;
+  for (const key of keys) {
+    if (!current[key]) return {};
+    current = current[key];
+  }
+  return current;
+}
+
+function getValue(tags, path) {
+  const keys = path.split('.');
+  let current = tags;
+  for (const key of keys) {
+    if (!current[key]) return 0;
+    current = current[key];
+  }
+  return current.value || 0;
+}
+
+function displayTag(container, path, tags, config) {
+  const tagConfig = getConfig(config, path);
+  const tagValue = getValue(tags, path);
+
+  if (typeof tagConfig === 'object' && tagConfig.value === undefined) {
+    for (const key in tagConfig) {
+      displayTag(container, `${path}.${key}`, tags, config);
     }
   } else {
+    if (tagConfig.hidden) return;
+    if (tagValue === 0) return;
+    
     const tagDiv = document.createElement('div');
-    tagDiv.innerText = `${path}: ${tag}`;
+    tagDiv.innerText = `${path}: ${tagValue}`;
+    if (tagConfig.color) {
+      tagDiv.style.color = tagConfig.color;
+    }
     container.appendChild(tagDiv);
   }
 }

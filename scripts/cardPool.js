@@ -2,7 +2,8 @@
 let cardPool = [];
 
 // Load card configuration from cards.json
-fetch('config/cards.json')
+const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+fetch(`config/cards.json?v=${timestamp}`)
   .then(response => response.json())
   .then(data => {
     console.warn('Card pool loaded.');

@@ -1,0 +1,48 @@
+{
+  "状态": {
+    "幸运": {
+      "value": 0,
+      "priority": 1,
+      "color": "green",
+      "hidden": false
+    },
+    "饱腹感": {
+      "value": 0,
+      "priority": 2,
+      "color": "orange",
+      "hidden": false
+    },
+    "体力": {
+      "value": 0,
+      "priority": 3,
+      "color": "red",
+      "hidden": false
+    }
+  },
+  "技能": {
+    "学术": {
+      "value": 0,
+      "priority": 1,
+      "color": "blue",
+      "hidden": false
+    },
+    "社交": {
+      "value": 0,
+      "priority": 1,
+      "color": "purple",
+      "hidden": false
+    },
+    "数学": {
+      "value": 0,
+      "priority": 2,
+      "color": "blue",
+      "hidden": false
+    },
+    "历史": {
+      "value": 0,
+      "priority": 2,
+      "color": "brown",
+      "hidden": false
+    }
+  }
+}
