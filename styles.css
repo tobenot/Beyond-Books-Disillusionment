@@ -171,3 +171,28 @@ body {
     background-color: #388e3c;
     transform: scale(1.05);
 }
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    body {
+        font-size: 12px;
+    }
+
+    .continue-button, .choice-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .loaderSpin {
+        width: 20px;
+        height: 20px;
+    }
+
+    .tags-display {
+        padding: 12px;
+    }
+
+    #tags-display div {
+        padding: 8px;
+    }
+}
