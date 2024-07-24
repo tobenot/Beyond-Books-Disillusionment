@@ -52,38 +52,44 @@ body {
   
   .game-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row; /* 将方向调整为横向 */
+    align-items: flex-start;
     width: 100%;
-    max-width: 600px;
+    max-width: 1200px; /* 调整最大宽度 */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 10px;
-  }
-  
-  .card-display {
+}
+
+.main-content {
+    flex: 1; /* main-content占据剩余的所有空间 */
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.card-display {
     margin-bottom: 20px;
-  }
-  
-  .card {
+    width: 100%; /* card-display占据main-content的全部宽度 */
+}
+
+.side-cards {
+    margin-bottom: 10px;
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .choices {
+}
+
+.choices {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-  }
-  
-  .choice-button {
+}
+
+.choice-button {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -92,13 +98,13 @@ body {
     margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .choice-button:hover {
+}
+
+.choice-button:hover {
     background-color: #2980b9;
-  }
-  
-  .continue-button {
+}
+
+.continue-button {
     background-color: #2ecc71;
     color: #fff;
     border: none;
@@ -106,25 +112,24 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .continue-button:hover {
+}
+
+.continue-button:hover {
     background-color: #27ae60;
-  }
-  
-  .tags-display {
-    width: 100%;
-    max-height: 200px;
+}
+
+.tags-display {
+    width: 300px; /* 固定宽度 */
+    max-height: 600px; /* 可选：设置一个最大高度 */
     overflow-y: auto;
-    margin-top: 20px;
-  }
-  
-  .tags-display div {
+    margin-left: 20px; /* 与main-content间留出一些空间 */
+}
+
+.tags-display div {
     padding: 5px 10px;
     border-bottom: 1px solid #ddd;
-  }
-  
-  .tags-display div:last-child {
+}
+
+.tags-display div:last-child {
     border-bottom: none;
-  }
-  
+}
