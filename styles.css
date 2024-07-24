@@ -8,9 +8,9 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #f0f0f0;
-  }
-  
-  .loading-indicator {
+}
+
+.loading-indicator {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,69 +18,113 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .loader {
+}
+
+.loader {
     text-align: center;
-  }
-  
-  .loaderSpin {
+}
+
+.loaderSpin {
     border: 4px solid #f3f3f3;
     border-radius: 50%;
     border-top: 4px solid #3498db;
     width: 40px;
     height: 40px;
     animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-  
-  #loadingBar {
+}
+
+#loadingBar {
     width: 100%;
     background-color: #ddd;
     margin-top: 10px;
-  }
-  
-  #progress {
+}
+
+#progress {
     width: 0;
     height: 10px;
     background-color: #3498db;
-  }
-  
-  .game-container {
+}
+
+.game-container {
     display: flex;
-    flex-direction: row; /* 将方向调整为横向 */
+    flex-direction: row;
     align-items: flex-start;
     width: 100%;
-    max-width: 1200px; /* 调整最大宽度 */
+    max-width: 1200px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: #f0f8ff;
     border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    margin-top: 20px;
 }
 
 .main-content {
-    flex: 1; /* main-content占据剩余的所有空间 */
+    flex: 0 0 61.8%; /* 占屏幕宽度的61.8% */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 20px; /* 简化 padding */
+    box-sizing: border-box;
 }
 
 .card-display {
     margin-bottom: 20px;
-    width: 100%; /* card-display占据main-content的全部宽度 */
-}
-
-.side-cards {
-    margin-bottom: 10px;
     width: 100%;
+    max-width: 512px; /* 最大宽度512px */
+    height: auto; /* 高度自动 */
+    max-height: 768px; /* 最大高度768px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 20px;
+    background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-display img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 使图片按比例缩放 */
+}
+
+.tags-display {
+    max-height: 600px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#tags-display div {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#tags-display div:last-child {
+    border-bottom: none;
+}
+
+.continue-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.continue-button:hover {
+    background-color: #0056b3;
 }
 
 .choices {
@@ -95,13 +139,14 @@ body {
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s; /* 添加平滑的过渡效果 */
 }
 
 .choice-button:hover {
     background-color: #2980b9;
+    transform: scale(1.05); /* 鼠标悬停时按钮稍微变大 */
 }
 
 .continue-button {
@@ -109,27 +154,13 @@ body {
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 15px 40px; /* Increase padding to make it longer */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px; /* Add margin to improve spacing */
 }
 
 .continue-button:hover {
     background-color: #27ae60;
-}
-
-.tags-display {
-    width: 300px; /* 固定宽度 */
-    max-height: 600px; /* 可选：设置一个最大高度 */
-    overflow-y: auto;
-    margin-left: 20px; /* 与main-content间留出一些空间 */
-}
-
-.tags-display div {
-    padding: 5px 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.tags-display div:last-child {
-    border-bottom: none;
+    transform: scale(1.05);
 }
