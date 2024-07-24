@@ -49,8 +49,10 @@ function updateTag(path, value) {
   if (tag) {
     tag.value = (tag.value || 0) + value;
     saveTags();
+    return tag;
   } else {
     console.error(`Tag ${path} not found`);
+    return null;
   }
 }
 

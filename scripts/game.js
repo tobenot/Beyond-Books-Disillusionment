@@ -22,15 +22,28 @@ function displayCard(card) {
 
   const buttons = cardDisplay.querySelectorAll('.choice-button');
   buttons.forEach((button, index) => {
-    button.addEventListener('click', () => makeChoice(card.choices[index].effect, card.choices[index].text, card.choices[index].description));
+    button.addEventListener('click', () => makeChoice(card.choices[index].effects, card.choices[index].text, card.choices[index].description));
   });
 }
 
-function makeChoice(effect, choiceText, description) {
-  applyEffect(effect);
+function makeChoice(effects, choiceText, description) {
+  const changes = effects.map(effect => applyEffect(effect)); // 收集每个变化
 
-  const resultText = document.createElement('p');
-  resultText.innerHTML = `${choiceText}.<br><br>${description}`;  
+  const resultText = document.createElement('div'); // 使用 <div> 代替 <p> 以便包含多个 <p>
+  resultText.innerHTML = `<br>${choiceText}`
+  const descriptionText = document.createElement('p');
+  descriptionText.innerHTML = `${description}`
+  resultText.appendChild(descriptionText);
+
+  // 显示具体的 tag 变化
+  changes.forEach(change => {
+    const tagConfig = getConfig(change.tagPath);
+    if (!tagConfig.hidden) { // 仅显示未隐藏的 tag
+      const changeText = document.createElement('p');
+      changeText.innerHTML = `${change.tagPath}: ${change.numericValue > 0 ? '+' : ''}${change.numericValue}`;
+      resultText.appendChild(changeText);
+    }
+  });
 
   const cardDisplay = document.getElementById('card-display');
   cardDisplay.innerHTML = '';
@@ -42,21 +55,11 @@ function makeChoice(effect, choiceText, description) {
 }
 
 function applyEffect(effect) {
-  const parts = effect.split('.');
-  const action = parts[0];
-  const value = parts.pop();
-  const path = parts.slice(1).join('.');
-
-  switch (action) {
-    case 'increment':
-      window.updateTag(path, parseInt(value));
-      break;
-    case 'decrement':
-      window.updateTag(path, -parseInt(value));
-      break;
-    default:
-      break;
-  }
+  const [tagPath, valueWithDot] = effect.split(/(\.\-?\d+$)/); // 修改正则表达式，允许负号
+  const value = valueWithDot.slice(1); // 去掉前面的点
+  const numericValue = parseInt(value, 10); // 将值转换为整数
+  const tag = window.updateTag(tagPath, numericValue);
+  return { tagPath, numericValue };
 }
 
 function updateTagsDisplay() {
@@ -64,15 +67,15 @@ function updateTagsDisplay() {
   const tagsDisplay = document.getElementById('tags-display');
   tagsDisplay.innerHTML = '';
   if (typeof window.tags === 'object' && window.tags !== null && typeof window.tagsConfig === 'object' && window.tagsConfig !== null) {
-      const allTags = [];
+    const allTags = [];
 
-      collectTags(window.tags, '', allTags);
+    collectTags(window.tags, '', allTags);
 
-      allTags.sort((a, b) => b.priority - a.priority);
+    allTags.sort((a, b) => b.priority - a.priority);
 
-      allTags.forEach(tag => {
-          displayTag(tagsDisplay, tag.path, window.tags, window.tagsConfig);
-      });
+    allTags.forEach(tag => {
+      displayTag(tagsDisplay, tag.path, window.tags, window.tagsConfig);
+    });
   }
 }
 

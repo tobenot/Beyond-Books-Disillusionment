@@ -7,12 +7,16 @@
     "choices": [
       {
         "text": "认真上课",
-        "effect": "increment.技能.学术.2",
+        "effects": [
+          "技能.学术.2"
+        ],
         "description": "你的学术能力提高了。"
       },
       {
         "text": "开小差",
-        "effect": "decrement.技能.学术.1",
+        "effects": [
+          "技能.学术.-1"
+        ],
         "description": "你的学术能力下降了。"
       }
     ]
@@ -25,12 +29,14 @@
     "choices": [
       {
         "text": "积极参与",
-        "effect": "increment.技能.社交.2",
+        "effects": [
+          "技能.社交.2"
+        ],
         "description": "你的社交能力提高了。"
       },
       {
         "text": "保持沉默",
-        "effect": "none",
+        "effects": [],
         "description": "你的社交能力没有变化。"
       }
     ]
@@ -43,12 +49,16 @@
     "choices": [
       {
         "text": "去食堂",
-        "effect": "increment.状态.饱腹感.3",
+        "effects": [
+          "状态.饱腹感.3"
+        ],
         "description": "你感到很饱。"
       },
       {
         "text": "留在教室自习",
-        "effect": "increment.技能.学术.1",
+        "effects": [
+          "技能.学术.1"
+        ],
         "description": "你的学术能力略有提升。"
       }
     ]
@@ -61,12 +71,16 @@
     "choices": [
       {
         "text": "积极参与",
-        "effect": "increment.状态.体力.2",
+        "effects": [
+          "状态.体力.2"
+        ],
         "description": "你的体力增加了。"
       },
       {
         "text": "偷懒",
-        "effect": "decrement.状态.体力.1",
+        "effects": [
+          "状态.体力.-1"
+        ],
         "description": "你的体力减少了。"
       }
     ]
@@ -79,12 +93,14 @@
     "choices": [
       {
         "text": "认真复习",
-        "effect": "increment.技能.学术.3",
+        "effects": [
+          "技能.学术.3"
+        ],
         "description": "你的学术能力显著提升。"
       },
       {
         "text": "临时抱佛脚",
-        "effect": "none",
+        "effects": [],
         "description": "你的学术能力没有变化。"
       }
     ]
