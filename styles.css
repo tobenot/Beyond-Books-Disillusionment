@@ -1,5 +1,12 @@
+@font-face {
+    font-family: 'VonwaonBitmap-12pxLite';
+    src: url('assets/fonts/VonwaonBitmap-12pxLite.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -7,7 +14,8 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
+    font-size: 24px;
 }
 
 .loading-indicator {
@@ -17,7 +25,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .loader {
@@ -46,7 +54,7 @@ body {
 
 #progress {
     width: 0;
-    height: 10px;
+    height: 16px;
     background-color: #3498db;
 }
 
@@ -56,56 +64,66 @@ body {
     align-items: flex-start;
     width: 100%;
     max-width: 1200px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #f0f8ff;
-    border-radius: 10px;
-    font-family: 'Arial', sans-serif;
-    margin-top: 20px;
+    padding: 32px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 12px;
+    margin-top: 32px;
+    transition: box-shadow 0.3s;
+}
+
+.game-container:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .main-content {
-    flex: 0 0 61.8%; /* 占屏幕宽度的61.8% */
+    flex: 0 0 62%; /* 62% of the screen width */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px; /* 简化 padding */
+    padding: 0 32px;
     box-sizing: border-box;
 }
 
 .card-display {
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     width: 100%;
-    max-width: 512px; /* 最大宽度512px */
-    height: auto; /* 高度自动 */
-    max-height: 768px; /* 最大高度768px */
+    max-width: 512px;
+    height: auto;
+    max-height: 768px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-display img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* 使图片按比例缩放 */
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .tags-display {
     max-height: 600px;
     overflow-y: auto;
     background-color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #tags-display div {
-    padding: 5px 10px;
+    padding: 16px;
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+#tags-display div:hover {
+    background-color: #f0f0f0;
 }
 
 #tags-display div:last-child {
@@ -113,54 +131,43 @@ body {
 }
 
 .continue-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
+    margin-top: 32px;
+    padding: 16px 32px;
+    font-size: 24px;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
+    border-radius: 6px;
+    background-color: #00bcd4;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .continue-button:hover {
-    background-color: #0056b3;
+    background-color: #0097a7;
+    transform: scale(1.05);
 }
 
 .choices {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 32px;
 }
 
 .choice-button {
-    background-color: #3498db;
+    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
+    background-color: #4caf50;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* 添加平滑的过渡效果 */
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 24px;
 }
 
 .choice-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.05); /* 鼠标悬停时按钮稍微变大 */
-}
-
-.continue-button {
-    background-color: #2ecc71;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 40px; /* Increase padding to make it longer */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 20px; /* Add margin to improve spacing */
-}
-
-.continue-button:hover {
-    background-color: #27ae60;
+    background-color: #388e3c;
     transform: scale(1.05);
 }
