@@ -63,3 +63,6 @@ function getSubTagWeights(path) {
 loadTags();
 
 export { tags, findTag, updateTag, calculateWeight, getSubTagWeights };
+
+window.updateTag = updateTag;
+window.tags = tags;

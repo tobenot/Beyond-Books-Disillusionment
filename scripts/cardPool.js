@@ -1,7 +1,4 @@
 // cardPool.js
-
-import { calculateWeight, getSubTagWeights } from './tagManager.js';
-
 let cardPool = [];
 
 // Load card configuration from cards.json
@@ -57,3 +54,5 @@ export function drawCard() {
   console.error('Error: This line should not be reached if weights are correctly calculated');
   return null;
 }
+
+window.drawCard = drawCard;
