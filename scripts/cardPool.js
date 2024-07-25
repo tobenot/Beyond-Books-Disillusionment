@@ -84,6 +84,10 @@ function evaluateCondition(value, condition) {
   }
 }
 
+// 记录最近抽到的三张卡的ID
+const recentDrawnCards = [];
+
+// 更新drawCard函数
 function drawCard() {
   const tags = window.tags;
   const weightedCards = cardPool.filter(card => canDrawCard(card, tags))
@@ -91,6 +95,10 @@ function drawCard() {
     let weight = card.baseWeight;
     for (const [tag, multiplier] of Object.entries(card.tagMultipliers || {})) {
       weight *= Math.pow(multiplier, getTagValue(tag));
+    }
+    // 如果卡片在最近抽到的三张卡中，权重减小到20%
+    if (recentDrawnCards.includes(card.id)) {
+      weight *= 0.2;
     }
     return { card, weight };
   });
@@ -100,7 +108,7 @@ function drawCard() {
   }
 
   weightedCards.sort((a, b) => b.weight - a.weight);
-  
+
   const mustDrawCards = weightedCards.filter(({ card }) => card.mustDraw).sort((a, b) => b.card.priority - a.card.priority);
   if (mustDrawCards.length > 0) {
     return mustDrawCards[0].card;
@@ -111,11 +119,21 @@ function drawCard() {
 
   for (const { card, weight } of weightedCards) {
     if (random < weight) {
+      // 记录抽到的卡片
+      updateRecentDrawnCards(card.id);
       return card;
     }
     random -= weight;
   }
-}  
+}
+
+// 更新最近抽到的三张卡的记录
+function updateRecentDrawnCards(cardId) {
+  if (recentDrawnCards.length >= 3) {
+    recentDrawnCards.shift(); // 移除最早的一张卡
+  }
+  recentDrawnCards.push(cardId); // 添加新抽到的卡
+} 
   
 function getTagValue(path) {
   const keys = path.split('.');
