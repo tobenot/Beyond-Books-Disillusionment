@@ -1,6 +1,48 @@
-// cardPool.js
 let cardPool = [];
 
+// 示例卡牌配置
+/*
+{
+      "id": "1",
+      "name": "英语课",
+      "type": "event",
+      "cardSet": "基础",
+      "description": "英语……老天赏饭吃。",
+      "requireTags":{ // 条件不满足的不进卡池 缺省表示无条件
+        "状态.精力": ">1",
+        "状态.快乐": ">1"
+      }
+      "baseWeight": 1.0, // 基础权重
+      "weightMultipliers": {
+        "状态.快乐": 1.2 // 标签乘这个数再乘到权重上
+      },
+      "mustDraw": true, // 是否必然抽到 可缺省 常用于开局事件或者连续事件
+      "priority": 0, // 必然抽到的优先级（数字越高，优先级越高） 可缺省
+      "choices": [
+        {
+          "text": "自学数学",
+          "conditions": { // 显示选项的条件 可缺省
+            "状态.精力": ">2",
+            "状态.快乐": ">2" 
+          }
+          "effects": [
+            "技能.数学.10",
+            "状态.精力.-1",
+            "状态.快乐.-1"
+          ],
+          "consumeCard": true, // 选择此选项时消耗该卡片 可缺省
+          "description": "什么课学什么科说着好听，但我要集中精力。"
+        },
+        {
+          "text": "玩",
+          "effects": [
+            "状态.快乐.2"
+          ],
+          "description": "乐。"
+        }
+      ]
+    },
+*/
 // Load card configuration from cards.json
 const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 fetch(`config/cards.json?v=${timestamp}`)
@@ -16,44 +58,84 @@ fetch(`config/cards.json?v=${timestamp}`)
     console.error('Error loading cards:', error);
   });
 
-export function drawCard() {
-  console.log('Function drawCard started');
-
-  if (cardPool.length === 0) {
-    console.error('Error: Card pool is empty.');
-    return null;
+function canDrawCard(card, tags) {
+  const requireTags = card.requireTags;
+  if (!requireTags) {
+    return true;
   }
 
-  const weights = cardPool.map(card => {
-    const baseWeight = 1;//calculateWeight(card.baseTag);
-    const subTagWeight = 1;//getSubTagWeights(card.baseTag);
-
-    console.log(`Card: ${card.name}, Base Weight: ${baseWeight}, Sub Tag Weight: ${subTagWeight}`);
-
-    return baseWeight + subTagWeight;
-  });
-
-  console.log('Weights calculated:', weights);
-
-  const totalWeight = weights.reduce((acc, weight) => acc + weight, 0);
-  console.log('Total Weight:', totalWeight);
-
-  const random = Math.random() * totalWeight;
-  console.log('Random number generated:', random);
-
-  let cumulativeWeight = 0;
-  for (let i = 0; i < cardPool.length; i++) {
-    cumulativeWeight += weights[i];
-    console.log(`Cumulative Weight at index ${i}:`, cumulativeWeight);
-
-    if (random < cumulativeWeight) {
-      console.log('Selected Card:', cardPool[i]);
-      return cardPool[i];
+  for (const [tag, condition] of Object.entries(requireTags)) {
+    const tagValue = getTagValue(tag);
+    if (!evaluateCondition(tagValue, condition)) {
+      return false;
     }
   }
+  return true;
+}
+    
+function evaluateCondition(value, condition) {
+  const operator = condition.charAt(0);
+  const threshold = parseFloat(condition.slice(1));
+  switch (operator) {
+    case '>': return value > threshold;
+    case '<': return value < threshold;
+    case '=': return value === threshold;
+    default: return false;
+  }
+}
 
-  console.error('Error: This line should not be reached if weights are correctly calculated');
-  return null;
+function drawCard() {
+  const tags = window.tags;
+  const weightedCards = cardPool.filter(card => canDrawCard(card, tags))
+                              .map(card => {
+    let weight = card.baseWeight;
+    for (const [tag, multiplier] of Object.entries(card.tagMultipliers || {})) {
+      weight *= Math.pow(multiplier, getTagValue(tag));
+    }
+    return { card, weight };
+  });
+
+  if (true) {
+    console.log("Card drawing probability table:", weightedCards);
+  }
+
+  weightedCards.sort((a, b) => b.weight - a.weight);
+  
+  const mustDrawCards = weightedCards.filter(({ card }) => card.mustDraw).sort((a, b) => b.card.priority - a.card.priority);
+  if (mustDrawCards.length > 0) {
+    return mustDrawCards[0].card;
+  }
+
+  const totalWeight = weightedCards.reduce((sum, { weight }) => sum + weight, 0);
+  let random = Math.random() * totalWeight;
+
+  for (const { card, weight } of weightedCards) {
+    if (random < weight) {
+      return card;
+    }
+    random -= weight;
+  }
+}  
+  
+function getTagValue(path) {
+  const keys = path.split('.');
+  let current = window.tags;
+  for (const key of keys) {
+    if (!current[key]) return 0;
+    current = current[key];
+  }
+  return current.value || 0;
+}
+  
+function consumeCard(card) {
+  const cardIndex = cardPool.indexOf(card);
+  if (cardIndex > -1) {
+      cardPool.splice(cardIndex, 1);
+      console.log(`Card ${card.name} has been consumed and removed from the pool.`);
+  } else {
+      console.log(`Card ${card.name} is not found in the pool.`);
+  }
 }
 
 window.drawCard = drawCard;
+window.consumeCard = consumeCard;

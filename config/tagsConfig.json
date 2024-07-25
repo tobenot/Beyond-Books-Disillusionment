@@ -1,32 +1,32 @@
 {
   "状态": {
     "快乐": {
-      "value": 3,
+      "value": 0,
       "priority": 10,
       "color": "green",
       "hidden": false
     },
     "精力": {
-      "value": 3,
+      "value": 0,
       "priority": 5,
       "color": "orange",
       "hidden": false
     }
   },
   "技能": {
-    "英语": {
-      "value": 100,
-      "color": "red",
-      "hidden": false
-    },
     "语文": {
-      "value": 60,
+      "value": 0,
       "color": "orange",
       "hidden": false
     },
     "数学": {
-      "value": 19,
+      "value": 0,
       "color": "blue",
+      "hidden": false
+    },
+    "英语": {
+      "value": 0,
+      "color": "red",
       "hidden": false
     }
   }

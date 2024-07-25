@@ -6,33 +6,65 @@ function startGame() {
   document.getElementById('continue-button').style.display = 'none';
 }
 
+function canShowChoice(choice) {
+  const requireTags = choice.requireTags;
+  if (!requireTags) {
+    return true;
+  }
+
+  for (const [tag, condition] of Object.entries(requireTags)) {
+    const tagValue = getTagValue(tag);
+    console.log(tagValue);
+    if (!evaluateCondition(tagValue, condition)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function evaluateCondition(value, condition) {
+  const operator = condition.charAt(0);
+  const threshold = parseFloat(condition.slice(1));
+  switch (operator) {
+    case '>': return value > threshold;
+    case '<': return value < threshold;
+    case '=': return value === threshold;
+    default: return false;
+  }
+}
+
 function displayCard(card) {
   const cardDisplay = document.getElementById('card-display');
+  const choicesHtml = card.choices
+    .map((choice, index) => ({ ...choice, originalIndex: index }))
+    .filter(choice => canShowChoice(choice))
+    .map(choice => `<button class="choice-button" data-index="${choice.originalIndex}">${choice.text}</button>`)
+    .join('');
+
   cardDisplay.innerHTML = `
     <div class="card">
       <h2>${card.name}</h2>
       <p>${card.description}</p>
-      <div class="choices">
-        ${card.choices.map(choice => `
-          <button class="choice-button">${choice.text}</button>
-        `).join('')}
-      </div>
+      <div class="choices">${choicesHtml}</div>
     </div>
   `;
 
   const buttons = cardDisplay.querySelectorAll('.choice-button');
-  buttons.forEach((button, index) => {
-    button.addEventListener('click', () => makeChoice(card.choices[index].effects, card.choices[index].text, card.choices[index].description));
+  buttons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      const originalIndex = event.target.getAttribute('data-index');
+      makeChoice(card.choices[originalIndex], card);
+    });
   });
 }
 
-function makeChoice(effects, choiceText, description) {
-  const changes = effects.map(effect => applyEffect(effect)); // 收集每个变化
+function makeChoice(choice, card) {
+  const changes = choice.effects.map(effect => applyEffect(effect)); // 收集每个变化
 
   const resultText = document.createElement('div'); // 使用 <div> 代替 <p> 以便包含多个 <p>
-  resultText.innerHTML = `<br>${choiceText}`
+  resultText.innerHTML = `<br><i>${choice.text}</i>`;
   const descriptionText = document.createElement('p');
-  descriptionText.innerHTML = `${description}`
+  descriptionText.innerHTML = `${choice.description}`;
   resultText.appendChild(descriptionText);
 
   // 显示具体的 tag 变化
@@ -52,6 +84,10 @@ function makeChoice(effects, choiceText, description) {
   document.getElementById('continue-button').style.display = 'block';
 
   updateTagsDisplay();
+
+  if (choice.consumeCard) {
+    window.consumeCard(card);
+  }
 }
 
 function applyEffect(effect) {
@@ -88,7 +124,7 @@ function updateTagsDisplay() {
   const academics = getValue("技能.英语");
   const social = getValue("技能.语文");
   const math = getValue("技能.数学");
-  if (academics >= 100 && social >= 100 && math >= 100) {
+  if (academics >= 1200 && social >= 1200 && math >= 1200) {
       endGame("good");
   }
 }
@@ -119,15 +155,11 @@ function endGame(result) {
 
 function collectTags(tags, currentPath, allTags) {
   for (const key in tags) {
-    console.log('currentPath' + currentPath);
     const newPath = currentPath ? `${currentPath}.${key}` : key;
     const tagConfig = getConfig(newPath);
     if (typeof tags[key] === 'object' && tags[key] !== null && tagConfig.value === undefined) {
       collectTags(tags[key], newPath, allTags);
     } else {
-      console.log(tags);
-      console.log(newPath);
-      console.log(getValue(newPath));
       const tagValue = getValue(newPath);
       if (!tagConfig.hidden && tagValue !== 0) {
         allTags.push({
@@ -170,6 +202,16 @@ function displayTag(container, path) {
     tagDiv.style.color = tagConfig.color;
   }
   container.appendChild(tagDiv);
+}
+
+function getTagValue(path) {
+  const keys = path.split('.');
+  let current = window.tags;
+  for (const key of keys) {
+    if (!current[key]) return 0;
+    current = current[key];
+  }
+  return current.value || 0;
 }
 
 document.getElementById('continue-button').onclick = startGame;
