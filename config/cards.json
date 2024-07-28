@@ -237,7 +237,30 @@
           "技能.生物.1316"
         ],
         "consumeCard": true,
-        "description": "语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。总共{{examAll:总分}}分。在最高的尖子班里倒数第二，真辛苦还有一位同学帮我垫着。<br><br><b>目前是临时版本，三科超过2000就算胜利！</b>"
+        "description": "语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。总共{{examAll:总分}}分。在最高的尖子班里倒数第二，真辛苦还有一位同学帮我垫着。</b>"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "name": "高考",
+    "type": "event",
+    "cardSet": "基础",
+    "description": "持续两天的高考开始了。",
+    "mustDraw": true,
+    "priority": 985,
+    "timeConsumption": 0,
+    "dateRestrictions": {
+      "after": "2020-07-07"
+    },
+    "choices": [
+      {
+        "text": "这是最后一战。",
+        "effects": [
+        ],
+        "specialMechanism": "gaokao",
+        "consumeCard": true,
+        "description": "渡海……"
       }
     ]
   }

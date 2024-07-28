@@ -4,6 +4,7 @@ const scripts = [
 	{ url: "scripts/tagManager.js", alias: "标签管理器" },
   	{ url: "scripts/date.js", alias: "日期系统" },
 	{ url: "scripts/specialMechanism.js", alias: "特殊机制" },
+	{ url: "scripts/rank.js", alias: "计算模块" },
 	{ url: "scripts/game.js", alias: "游戏主程序，卡牌配置" },
 ];
 

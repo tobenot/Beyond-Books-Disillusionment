@@ -1,6 +1,7 @@
 // Initialize date
-let currentDate = new Date(2019, 7, 13); // August 13, 2019
-const endDate = new Date(2020, 6, 7); // July 7, 2020
+let currentDate = new Date(2019, 7, 13, 10, 0, 0); // August 13, 2019
+//let currentDate = new Date(2020, 6, 3, 10, 0, 0);
+const endDate = new Date(2020, 6, 7, 10, 0, 0); // July 7, 2020
 let daysPassed = 0;
 const triggerTagModifierInterval = 3;
 

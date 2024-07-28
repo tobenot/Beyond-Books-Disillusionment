@@ -119,6 +119,26 @@ function getEffect(effect) {
 	return { tagPath, numericValue };
 }
 
+async function gaokao() {
+    const totalScore = examAll();
+    const rank = await queryRank(totalScore);
+    const resultText = `
+        <div>
+            高考成绩：<br>
+            语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。<br>
+            总分：<b>${totalScore}</b><br>
+            排名：<b>${rank}</b><br>
+            ${totalScore >= 524 ? '达到高分优先投档批' : totalScore >= 410 ? '达到本科批' : '未达到本科批'}
+        </div>
+    `;
+
+    const resultTextStr = window.specialMechanism.replacePlaceholders(resultText);
+    document.getElementById("card-display").innerHTML = resultTextStr;
+
+    window.endGame("gaokao");
+}
+
 window.specialMechanism = {
     replacePlaceholders,
+    gaokao,
 }

@@ -150,14 +150,6 @@ function updateTagsDisplay() {
 	} else if (energy <= 0) {
 		endGame("bad_energy");
 	}
-
-	// Check for winning conditions
-	const academics = getValue("技能.英语");
-	const social = getValue("技能.语文");
-	const math = getValue("技能.数学");
-	if (academics >= 2000 && social >= 2000 && math >= 2000) {
-		endGame("good");
-	}
 }
 
 function endGame(result) {
@@ -174,12 +166,8 @@ function endGame(result) {
           <h2>你失败了！</h2>
           <br><p>精力耗尽，疲惫不堪</p>
       `;
-	} else if (result === "good") {
-		// Good ending message
-		cardDisplay.innerHTML = `
-          <h2>你赢了！</h2>
-          <p>在英语、语文和数学三大科目中都取得了高分。这比现实简单多了吧。</p>
-      `;
+	} else if (result === "gaokao") {
+
 	}
 	document.getElementById("continue-button").style.display = "none";
 	document.getElementById("main-menu-button").style.display = "block";
@@ -256,3 +244,4 @@ function getTagValue(path) {
 document.getElementById("continue-button").onclick = startGame;
 
 window.newGame = newGame;
+window.endGame = endGame;
