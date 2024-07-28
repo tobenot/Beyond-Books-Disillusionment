@@ -1,5 +1,5 @@
 function newGame() {
-  window.dateTime.addCountdown("高考倒计时", "2020-06-07");
+  window.dateTime.addCountdown("高考倒计时", "2020-07-07");
 }
 
 function startGame() {
@@ -101,6 +101,7 @@ function makeChoice(choice, card) {
 	// 按下按钮后更新日期
 	continueButton.onclick = () => {
 		window.dateTime.updateDate(timeConsumption);
+		updateTagsDisplay();
 		startGame();
 	};
 
@@ -140,15 +141,6 @@ function updateTagsDisplay() {
 		allTags.forEach((tag) => {
 			displayTag(tagsDisplay, tag.path, window.tags, window.tagsConfig);
 		});
-	}
-
-	// Check for bad ending conditions
-	const happiness = getValue("状态.快乐");
-	const energy = getValue("状态.精力");
-	if (happiness <= 0) {
-		endGame("bad_happiness");
-	} else if (energy <= 0) {
-		endGame("bad_energy");
 	}
 }
 
