@@ -18,6 +18,7 @@ let cardPool = [];
       },
       "mustDraw": true, // 是否必然抽到 可缺省 常用于开局事件或者连续事件
       "priority": 0, // 必然抽到的优先级（数字越高，优先级越高） 可缺省
+      "timeConsumption": 0, // 消耗多少天 可缺省
       "choices": [
         {
           "text": "自学数学",

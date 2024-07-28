@@ -91,7 +91,23 @@ function makeChoice(choice, card) {
 	cardDisplay.innerHTML = "";
 	cardDisplay.appendChild(resultText);
 
-	document.getElementById("continue-button").style.display = "block";
+	// 获取卡牌的时间消耗
+	const timeConsumption = window.date.getCardTimeConsumption(card);
+
+	// 更新按钮文本
+	const continueButton = document.getElementById("continue-button");
+	if (timeConsumption > 0) {
+		continueButton.innerText = `过了${timeConsumption}天`;
+	} else {
+		continueButton.innerText = "继续";
+	}
+	continueButton.style.display = "block";
+
+	// 按下按钮后更新日期
+	continueButton.onclick = () => {
+		window.date.updateDate(timeConsumption);
+		startGame();
+	};
 
 	updateTagsDisplay();
 
@@ -166,10 +182,10 @@ function endGame(result) {
       `;
 	}
 	document.getElementById("continue-button").style.display = "none";
-  document.getElementById("main-menu-button").style.display = "block";
-  document.getElementById("main-menu-button").onclick = function() {
-      window.location.reload();
-  };
+	document.getElementById("main-menu-button").style.display = "block";
+	document.getElementById("main-menu-button").onclick = function () {
+		window.location.reload();
+	};
 }
 
 function collectTags(tags, currentPath, allTags) {

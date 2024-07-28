@@ -203,6 +203,7 @@
     "description": "我是苏祁镜，飞雁市第一中学的奥赛生。",
     "mustDraw": true,
     "priority": 1000,
+    "timeConsumption": 0,
     "choices": [
       {
         "text": "没错。",
@@ -223,6 +224,7 @@
     "description": "2019年8月12，这是高三开学的日子。",
     "mustDraw": true,
     "priority": 999,
+    "timeConsumption": 0,
     "choices": [
       {
         "text": "还记得在高二上的期末考……",
