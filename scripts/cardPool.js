@@ -43,20 +43,23 @@ let cardPool = [];
       ]
     },
 */
-// Load card configuration from cards.json
-const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-fetch(`config/cards.json?v=${timestamp}`)
-	.then((response) => response.json())
-	.then((data) => {
-		console.warn("Card pool loaded.");
-		cardPool = data;
-		if (cardPool.length === 0) {
-			console.warn("Warning: Card pool is empty.");
-		}
-	})
-	.catch((error) => {
-		console.error("Error loading cards:", error);
-	});
+
+async function loadCardData(){
+  // Load card configuration from cards.json
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  fetch(`config/cards.json?v=${timestamp}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.warn("Card pool loaded.");
+      cardPool = data;
+      if (cardPool.length === 0) {
+        console.warn("Warning: Card pool is empty.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error loading cards:", error);
+    });
+}
 
 function canDrawCard(card, tags) {
 	const requireTags = card.requireTags;
@@ -171,3 +174,4 @@ function consumeCard(card) {
 
 window.drawCard = drawCard;
 window.consumeCard = consumeCard;
+window.startup_loadCardData = loadCardData;

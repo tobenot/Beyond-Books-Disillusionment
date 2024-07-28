@@ -2,7 +2,7 @@
 const scripts = [
 	{ url: "scripts/cardPool.js", alias: "卡池(这里卡住就是网炸了，刷新)" },
 	{ url: "scripts/tagManager.js", alias: "标签管理器" },
-	{ url: "scripts/game.js", alias: "游戏主程序" },
+	{ url: "scripts/game.js", alias: "游戏主程序，卡牌配置" },
 ];
 
 let loadedScriptsCount = 0;
@@ -46,6 +46,9 @@ async function initializeApp() {
 		for (const script of scripts) {
 			await loadScript(script.url, script.alias);
 		}
+
+    await window.startup_loadTagsConfig();
+    await window.startup_loadCardData();
 
 		loadingIndicator.style.display = "none";
 	} catch (error) {

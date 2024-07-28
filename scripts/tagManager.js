@@ -21,15 +21,6 @@ function loadTagsConfig() {
 		});
 }
 
-function loadTags() {
-	/*const storedTags = localStorage.getItem('tags');
-  if (storedTags) {
-    tags = JSON.parse(storedTags);
-  } else {
-    tags = {};
-  }*/
-}
-
 function saveTags() {
 	localStorage.setItem("tags", JSON.stringify(tags));
 }
@@ -78,9 +69,6 @@ function getSubTagWeights(path) {
 	return total;
 }
 
-loadTagsConfig();
-loadTags();
-
 export {
 	tags,
 	tagsConfig,
@@ -92,3 +80,4 @@ export {
 
 window.updateTag = updateTag;
 window.tags = tags;
+window.startup_loadTagsConfig = loadTagsConfig;
