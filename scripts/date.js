@@ -73,7 +73,10 @@ function removeCountdown(name) {
 }
 
 function getCardTimeConsumption(card) {
-	return card.timeConsumption || defaultTimeConsumption;
+    if (card.timeConsumption === undefined) {
+        return defaultTimeConsumption;
+    }
+    return card.timeConsumption;
 }
 
 window.dateTime = {
