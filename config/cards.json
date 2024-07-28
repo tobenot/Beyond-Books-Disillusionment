@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "1",
     "name": "英语课",
@@ -142,8 +142,8 @@
         "description": "大家都在学。但是我不学英语。"
       },
       {
-          "text": "随便看看",
-          "effects": [
+        "text": "随便看看",
+        "effects": [
           "技能.英语.50",
           "技能.数学.50",
           "技能.语文.50"
@@ -256,8 +256,7 @@
     "choices": [
       {
         "text": "这是最后一战。",
-        "effects": [
-        ],
+        "effects": [],
         "specialMechanism": "gaokao",
         "consumeCard": true,
         "description": "渡海……"

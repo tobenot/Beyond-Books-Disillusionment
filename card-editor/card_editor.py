@@ -15,22 +15,22 @@ class CardEditor(tk.Tk):
 
     def load_data(self):
         try:
-            with open("config/cards.json", "r") as f:
+            with open("config/cards.json", "r", encoding='utf-8') as f:
                 self.card_data = json.load(f)
         except FileNotFoundError:
             self.card_data = []
 
         try:
-            with open("config/tags.json", "r") as f:
+            with open("config/tagsConfig.json", "r", encoding='utf-8') as f:
                 self.tag_data = json.load(f)
         except FileNotFoundError:
             self.tag_data = {}
 
     def save_data(self):
-        with open("config/cards.json", "w") as f:
-            json.dump(self.card_data, f, indent=2)
-        with open("config/tags.json", "w") as f:
-            json.dump(self.tag_data, f, indent=2)
+        with open("config/cards.json", "w", encoding='utf-8-sig') as f:
+            json.dump(self.card_data, f, indent=2, ensure_ascii=False)
+        with open("config/tagsConfig.json", "w", encoding='utf-8-sig') as f:
+            json.dump(self.tag_data, f, indent=2, ensure_ascii=False)
         messagebox.showinfo("Save", "Data saved successfully")
 
     def create_widgets(self):
@@ -76,7 +76,7 @@ class CardEditor(tk.Tk):
         return dialog.card
 
 class CardDialog:
-    def __init__(self, parent, card):
+    def __init__(self, parent, card=None):
         self.card = card
         self.top = tk.Toplevel(parent)
         self.top.title("Edit Card")
@@ -99,11 +99,58 @@ class CardDialog:
         if card:
             self.type_entry.insert(0, card["type"])
 
+        tk.Label(self.top, text="Card Set:").pack()
+        self.card_set_entry = tk.Entry(self.top)
+        self.card_set_entry.pack()
+        if card:
+            self.card_set_entry.insert(0, card["cardSet"])
+
         tk.Label(self.top, text="Description:").pack()
         self.desc_entry = tk.Entry(self.top)
         self.desc_entry.pack()
         if card:
             self.desc_entry.insert(0, card["description"])
+
+        tk.Label(self.top, text="Base Weight:").pack()
+        self.base_weight_entry = tk.Entry(self.top)
+        self.base_weight_entry.pack()
+        if card:
+            self.base_weight_entry.insert(0, card.get("baseWeight", ""))
+
+        tk.Label(self.top, text="Require Tags:").pack()
+        self.require_tags_entry = tk.Entry(self.top)
+        self.require_tags_entry.pack()
+        if card:
+            self.require_tags_entry.insert(0, json.dumps(card.get("requireTags", {})))
+
+        tk.Label(self.top, text="Weight Multipliers:").pack()
+        self.weight_multipliers_entry = tk.Entry(self.top)
+        self.weight_multipliers_entry.pack()
+        if card:
+            self.weight_multipliers_entry.insert(0, json.dumps(card.get("weightMultipliers", {})))
+
+        tk.Label(self.top, text="Must Draw:").pack()
+        self.must_draw_var = tk.BooleanVar(value=card.get("mustDraw", False) if card else False)
+        self.must_draw_check = tk.Checkbutton(self.top, variable=self.must_draw_var)
+        self.must_draw_check.pack()
+
+        tk.Label(self.top, text="Priority:").pack()
+        self.priority_entry = tk.Entry(self.top)
+        self.priority_entry.pack()
+        if card:
+            self.priority_entry.insert(0, card.get("priority", ""))
+
+        tk.Label(self.top, text="Time Consumption:").pack()
+        self.time_consumption_entry = tk.Entry(self.top)
+        self.time_consumption_entry.pack()
+        if card:
+            self.time_consumption_entry.insert(0, card.get("timeConsumption", ""))
+
+        tk.Label(self.top, text="Date Restrictions:").pack()
+        self.date_restrictions_entry = tk.Entry(self.top)
+        self.date_restrictions_entry.pack()
+        if card:
+            self.date_restrictions_entry.insert(0, json.dumps(card.get("dateRestrictions", {})))
 
         self.choices = card["choices"] if card else []
         tk.Button(self.top, text="Edit Choices", command=self.edit_choices).pack()
@@ -118,7 +165,15 @@ class CardDialog:
             "id": self.id_entry.get(),
             "name": self.name_entry.get(),
             "type": self.type_entry.get(),
+            "cardSet": self.card_set_entry.get(),
             "description": self.desc_entry.get(),
+            "baseWeight": float(self.base_weight_entry.get()) if self.base_weight_entry.get() else 0.0,
+            "requireTags": json.loads(self.require_tags_entry.get()) if self.require_tags_entry.get() else {},
+            "weightMultipliers": json.loads(self.weight_multipliers_entry.get()) if self.weight_multipliers_entry.get() else {},
+            "mustDraw": self.must_draw_var.get(),
+            "priority": int(self.priority_entry.get()) if self.priority_entry.get() else 0,
+            "timeConsumption": int(self.time_consumption_entry.get()) if self.time_consumption_entry.get() else 0,
+            "dateRestrictions": json.loads(self.date_restrictions_entry.get()) if self.date_restrictions_entry.get() else {},
             "choices": self.choices
         }
         self.top.destroy()
@@ -175,7 +230,7 @@ class ChoicesDialog:
         return dialog.choice
 
 class ChoiceDialog:
-    def __init__(self, parent, choice):
+    def __init__(self, parent, choice=None):
         self.choice = choice
         self.top = tk.Toplevel(parent)
         self.top.title("Edit Choice")
@@ -186,18 +241,45 @@ class ChoiceDialog:
         if choice:
             self.text_entry.insert(0, choice["text"])
 
-        tk.Label(self.top, text="Effect:").pack()
-        self.effect_entry = tk.Entry(self.top)
-        self.effect_entry.pack()
+        tk.Label(self.top, text="Description:").pack()
+        self.desc_entry = tk.Entry(self.top)
+        self.desc_entry.pack()
         if choice:
-            self.effect_entry.insert(0, choice["effect"])
+            self.desc_entry.insert(0, choice["description"])
+
+        tk.Label(self.top, text="Conditions:").pack()
+        self.conditions_entry = tk.Entry(self.top)
+        self.conditions_entry.pack()
+        if choice:
+            self.conditions_entry.insert(0, json.dumps(choice.get("conditions", {})))
+
+        tk.Label(self.top, text="Special Mechanism:").pack()
+        self.special_mechanism_entry = tk.Entry(self.top)
+        self.special_mechanism_entry.pack()
+        if choice:
+            self.special_mechanism_entry.insert(0, choice.get("specialMechanism", ""))
+
+        tk.Label(self.top, text="Effects:").pack()
+        self.effects_entry = tk.Entry(self.top)
+        self.effects_entry.pack()
+        if choice:
+            self.effects_entry.insert(0, json.dumps(choice["effects"]))
+
+        tk.Label(self.top, text="Consume Card:").pack()
+        self.consume_card_var = tk.BooleanVar(value=choice.get("consumeCard", False) if choice else False)
+        self.consume_card_check = tk.Checkbutton(self.top, variable=self.consume_card_var)
+        self.consume_card_check.pack()
 
         tk.Button(self.top, text="Save", command=self.save).pack()
 
     def save(self):
         self.choice = {
             "text": self.text_entry.get(),
-            "effect": self.effect_entry.get()
+            "description": self.desc_entry.get(),
+            "conditions": json.loads(self.conditions_entry.get()) if self.conditions_entry.get() else {},
+            "specialMechanism": self.special_mechanism_entry.get(),
+            "effects": json.loads(self.effects_entry.get()),
+            "consumeCard": self.consume_card_var.get()
         }
         self.top.destroy()
 
