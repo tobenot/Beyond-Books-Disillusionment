@@ -72,28 +72,19 @@ function displayCard(card) {
 function makeChoice(choice, card) {
 	const changes = choice.effects.map((effect) => applyEffect(effect)); // 收集每个变化
 
-	const resultText = document.createElement("div"); // 使用 <div> 代替 <p> 以便包含多个 <p>
-	resultText.innerHTML = `<br><i>${choice.text}</i>`;
-	const descriptionText = document.createElement("p");
-	descriptionText.innerHTML = `${choice.description}`;
-	resultText.appendChild(descriptionText);
+	const resultText = `
+		<div>
+			<br><i>${choice.text}</i>
+			<p>${choice.description}</p>
+			${changes.map(change => {
+				const tagConfig = getConfig(change.tagPath);
+				return !tagConfig.hidden ? `<p>${change.tagPath}: ${change.numericValue > 0 ? "+" : ""}${change.numericValue}</p>` : '';
+			}).join('')}
+		</div>
+	`;
 
-	// 显示具体的 tag 变化
-	changes.forEach((change) => {
-		const tagConfig = getConfig(change.tagPath);
-		if (!tagConfig.hidden) {
-			// 仅显示未隐藏的 tag
-			const changeText = document.createElement("p");
-			changeText.innerHTML = `${change.tagPath}: ${
-				change.numericValue > 0 ? "+" : ""
-			}${change.numericValue}`;
-			resultText.appendChild(changeText);
-		}
-	});
-
-	const cardDisplay = document.getElementById("card-display");
-	cardDisplay.innerHTML = "";
-	cardDisplay.appendChild(window.specialMechanism.replacePlaceholders(resultText));
+	const resultTextStr = window.specialMechanism.replacePlaceholders(resultText);
+	document.getElementById("card-display").innerHTML = resultTextStr;
 
 	// 获取卡牌的时间消耗
 	const timeConsumption = window.dateTime.getCardTimeConsumption(card);
@@ -116,8 +107,8 @@ function makeChoice(choice, card) {
 	updateTagsDisplay();
 
 	const mechanismField = choice.specialMechanism;
-	if (mechanismField && window.MechanismCard[mechanismField]) {
-		window.MechanismCard[mechanismField](card);
+	if (mechanismField && window.specialMechanism[mechanismField]) {
+		window.specialMechanism[mechanismField](choice, card);
 	}
 
 	if (choice.consumeCard) {
@@ -164,7 +155,7 @@ function updateTagsDisplay() {
 	const academics = getValue("技能.英语");
 	const social = getValue("技能.语文");
 	const math = getValue("技能.数学");
-	if (academics >= 1200 && social >= 1200 && math >= 1200) {
+	if (academics >= 2000 && social >= 2000 && math >= 2000) {
 		endGame("good");
 	}
 }

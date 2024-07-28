@@ -3,31 +3,26 @@
     "快乐": {
       "value": 0,
       "priority": 10,
-      "color": "green",
-      "hidden": false
+      "color": "green"
     },
     "精力": {
       "value": 0,
       "priority": 5,
-      "color": "orange",
-      "hidden": false
+      "color": "orange"
     }
   },
   "技能": {
     "语文": {
       "value": 0,
-      "color": "orange",
-      "hidden": false
+      "color": "orange"
     },
     "数学": {
       "value": 0,
-      "color": "blue",
-      "hidden": false
+      "color": "blue"
     },
     "英语": {
       "value": 0,
-      "color": "red",
-      "hidden": false
+      "color": "red"
     }
   }
 }
