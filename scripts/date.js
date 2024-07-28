@@ -1,6 +1,8 @@
 // Initialize date
 let currentDate = new Date(2019, 7, 12); // August 12, 2019
 const endDate = new Date(2020, 6, 7); // July 7, 2020
+let daysPassed = 0;
+const triggerTagModifierInterval = 3;
 
 // Default card time consumption in days
 const defaultTimeConsumption = 3;
@@ -8,20 +10,32 @@ const defaultTimeConsumption = 3;
 function getCurrentDate(){
     return currentDate;
 }
+
 function updateDate(days) {
-	// Calculate the new date
-	const newDate = new Date(currentDate);
-	newDate.setDate(newDate.getDate() + days);
+    // Calculate the new date
+    let newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() + days);
 
-	// Ensure the date doesn't exceed the end date
-	if (newDate > endDate) {
-		newDate = new Date(endDate);
-	}
+    // Ensure the date doesn't exceed the end date
+    if (newDate > endDate) {
+        newDate = new Date(endDate);
+    }
 
-	currentDate = newDate;
+    // Update the number of days passed
+    daysPassed += days;
 
-	// Update the display
-	updateDateDisplay();
+    // Trigger the special function for each 3-day period
+    while (daysPassed >= triggerTagModifierInterval) {
+        if(window.applyTagModifier){
+            window.applyTagModifier()
+        }
+        daysPassed -= triggerTagModifierInterval;
+    }
+
+    currentDate = newDate;
+
+    // Update the display
+    updateDateDisplay();
 }
 
 function updateDateDisplay() {

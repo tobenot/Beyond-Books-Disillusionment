@@ -69,15 +69,16 @@ function getSubTagWeights(path) {
 	return total;
 }
 
-export {
-	tags,
-	tagsConfig,
-	findTag,
-	updateTag,
-	calculateWeight,
-	getSubTagWeights,
-};
+function applyTagModifier() {
+  const TagModifierConfig = tagsConfig.变化;
+  if (TagModifierConfig) {
+      for (const [path, TagModifierValue] of Object.entries(TagModifierConfig)) {
+          updateTag(path, TagModifierValue);
+      }
+  }
+}
 
 window.updateTag = updateTag;
 window.tags = tags;
 window.startup_loadTagsConfig = loadTagsConfig;
+window.applyTagModifier = applyTagModifier;

@@ -119,6 +119,7 @@ function initModal() {
 function initMainMenu() {
 	document.getElementById("startGameButton").addEventListener("click", () => {
 		document.getElementById("main-menu").style.display = "none";
+    window.newGame();
 		document.getElementById("game-container").style.display = "flex";
 	});
 

@@ -1,3 +1,7 @@
+function newGame() {
+  window.dateTime.addCountdown("高考", "2020-06-07");
+}
+
 function startGame() {
 	const currentCard = window.drawCard();
 	displayCard(currentCard);
@@ -254,3 +258,5 @@ function getTagValue(path) {
 }
 
 document.getElementById("continue-button").onclick = startGame;
+
+window.newGame = newGame;
