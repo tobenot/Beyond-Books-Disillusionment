@@ -2,7 +2,8 @@
 const scripts = [
 	{ url: "scripts/cardPool.js", alias: "卡池(这里卡住就是网炸了，刷新)" },
 	{ url: "scripts/tagManager.js", alias: "标签管理器" },
-  { url: "scripts/date.js", alias: "日期系统" },
+  	{ url: "scripts/date.js", alias: "日期系统" },
+	{ url: "scripts/specialMechanism.js", alias: "特殊机制" },
 	{ url: "scripts/game.js", alias: "游戏主程序，卡牌配置" },
 ];
 

@@ -30,7 +30,8 @@ let cardPool = [];
           "conditions": { // 显示选项的条件 可缺省
             "状态.精力": ">2",
             "状态.快乐": ">2" 
-          }
+          },
+		  "specialMechanism": "selfLearning", // 选了这个选项后触发特殊函数名，可缺省
           "effects": [
             "技能.数学.10",
             "状态.精力.-1",

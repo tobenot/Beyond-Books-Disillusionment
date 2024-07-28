@@ -93,7 +93,7 @@ function makeChoice(choice, card) {
 
 	const cardDisplay = document.getElementById("card-display");
 	cardDisplay.innerHTML = "";
-	cardDisplay.appendChild(resultText);
+	cardDisplay.appendChild(window.specialMechanism.replacePlaceholders(resultText));
 
 	// 获取卡牌的时间消耗
 	const timeConsumption = window.dateTime.getCardTimeConsumption(card);
@@ -114,6 +114,11 @@ function makeChoice(choice, card) {
 	};
 
 	updateTagsDisplay();
+
+	const mechanismField = choice.specialMechanism;
+	if (mechanismField && window.MechanismCard[mechanismField]) {
+		window.MechanismCard[mechanismField](card);
+	}
 
 	if (choice.consumeCard) {
 		window.consumeCard(card);
