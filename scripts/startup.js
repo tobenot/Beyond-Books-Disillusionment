@@ -113,7 +113,7 @@ function initMainMenu() {
 
 	document.getElementById("cardlistButton").addEventListener("click", () => {
 		document.getElementById("main-menu").style.display = "none";
-		document.getElementById("card-list-menu").style.display = "block";
+		document.getElementById("card-list-menu").style.display = "flex";
 		loadCardList();
 	});
 

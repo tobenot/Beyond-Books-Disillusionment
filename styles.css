@@ -1,3 +1,4 @@
+/* 字体和基本样式 */
 @font-face {
     font-family: 'VonwaonBitmap-12pxLite';
     src: url('assets/fonts/VonwaonBitmap-12pxLite.ttf') format('truetype');
@@ -18,6 +19,7 @@ body {
     font-size: 24px;
 }
 
+/* loading indicator 样式 */
 .loading-indicator {
     display: flex;
     justify-content: center;
@@ -58,6 +60,7 @@ body {
     background-color: #3498db;
 }
 
+/* game-container 样式 */
 .game-container {
     display: flex;
     flex-direction: row;
@@ -77,7 +80,7 @@ body {
 }
 
 .main-content {
-    flex: 0 0 62%; /* 62% of the screen width */
+    flex: 0 0 62%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -178,7 +181,7 @@ body {
         font-size: 12px;
     }
 
-    .continue-button, .choice-button {
+    .continue-button, .choice-button{
         font-size: 12px;
         padding: 8px 16px;
     }
@@ -214,19 +217,84 @@ body {
     }
 }
 
+/* main-menu 样式 */
 .main-menu {
-    display: none;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.main-menu:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .main-menu button {
-    margin: 5px;
-    padding: 10px;
+    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
+    margin: 8px 0;
+    padding: 16px 32px;
+    font-size: 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
+.main-menu button:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
+/* card-list-menu 样式 */
+.card-list-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.card-list-menu:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-list-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-list-menu button {
+    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
+    margin: 8px 0;
+    padding: 16px 32px;
+    font-size: 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.card-list-menu button:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
+/* popup-modal 样式 */
 .popup-modal {
     display: none;
     position: fixed;
@@ -236,27 +304,36 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
 }
 
 .popup-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: #ffffff;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 12px;
     width: 80%;
+    max-width: 600px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.popup-content:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .close-popup {
     color: #aaa;
     float: right;
-    font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .close-popup:hover,
 .close-popup:focus {
     color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
