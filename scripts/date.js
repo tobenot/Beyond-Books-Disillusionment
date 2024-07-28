@@ -5,6 +5,9 @@ const endDate = new Date(2020, 6, 7); // July 7, 2020
 // Default card time consumption in days
 const defaultTimeConsumption = 3;
 
+function getCurrentDate(){
+    return currentDate;
+}
 function updateDate(days) {
 	// Calculate the new date
 	const newDate = new Date(currentDate);
@@ -59,9 +62,10 @@ function getCardTimeConsumption(card) {
 	return card.timeConsumption || defaultTimeConsumption;
 }
 
-window.date = {
+window.dateTime = {
 	updateDate,
 	addCountdown,
 	removeCountdown,
 	getCardTimeConsumption,
+    getCurrentDate,
 };

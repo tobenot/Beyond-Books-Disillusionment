@@ -92,7 +92,7 @@ function makeChoice(choice, card) {
 	cardDisplay.appendChild(resultText);
 
 	// 获取卡牌的时间消耗
-	const timeConsumption = window.date.getCardTimeConsumption(card);
+	const timeConsumption = window.dateTime.getCardTimeConsumption(card);
 
 	// 更新按钮文本
 	const continueButton = document.getElementById("continue-button");
@@ -105,7 +105,7 @@ function makeChoice(choice, card) {
 
 	// 按下按钮后更新日期
 	continueButton.onclick = () => {
-		window.date.updateDate(timeConsumption);
+		window.dateTime.updateDate(timeConsumption);
 		startGame();
 	};
 
