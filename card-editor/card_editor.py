@@ -1,6 +1,6 @@
 import json
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import ttk, simpledialog, messagebox
 
 class CardEditor(tk.Tk):
     def __init__(self):
@@ -15,13 +15,13 @@ class CardEditor(tk.Tk):
 
     def load_data(self):
         try:
-            with open("config/cards.json", "r", encoding='utf-8') as f:
+            with open("config/cards.json", "r", encoding='utf-8-sig') as f:
                 self.card_data = json.load(f)
         except FileNotFoundError:
             self.card_data = []
 
         try:
-            with open("config/tagsConfig.json", "r", encoding='utf-8') as f:
+            with open("config/tagsConfig.json", "r", encoding='utf-8-sig') as f:
                 self.tag_data = json.load(f)
         except FileNotFoundError:
             self.tag_data = {}
@@ -36,18 +36,19 @@ class CardEditor(tk.Tk):
     def create_widgets(self):
         self.card_listbox = tk.Listbox(self)
         self.card_listbox.pack(fill=tk.BOTH, expand=True)
+        self.card_listbox.bind('<Double-1>', lambda x: self.edit_card())
         self.load_cards_to_listbox()
 
-        btn_frame = tk.Frame(self)
+        btn_frame = ttk.Frame(self)
         btn_frame.pack(fill=tk.X)
 
-        add_card_btn = tk.Button(btn_frame, text="Add Card", command=self.add_card)
+        add_card_btn = ttk.Button(btn_frame, text="Add Card", command=self.add_card)
         add_card_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
-        edit_card_btn = tk.Button(btn_frame, text="Edit Card", command=self.edit_card)
+        edit_card_btn = ttk.Button(btn_frame, text="Edit Card", command=self.edit_card)
         edit_card_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
-        save_btn = tk.Button(btn_frame, text="Save", command=self.save_data)
+        save_btn = ttk.Button(btn_frame, text="Save", command=self.save_data)
         save_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
     def load_cards_to_listbox(self):
@@ -81,81 +82,78 @@ class CardDialog:
         self.top = tk.Toplevel(parent)
         self.top.title("Edit Card")
 
+        self.create_widgets()
+        self.fill_data()
+
+    def create_widgets(self):
         tk.Label(self.top, text="ID:").pack()
-        self.id_entry = tk.Entry(self.top)
+        self.id_entry = ttk.Entry(self.top, width=50)
         self.id_entry.pack()
-        if card:
-            self.id_entry.insert(0, card["id"])
 
         tk.Label(self.top, text="Name:").pack()
-        self.name_entry = tk.Entry(self.top)
+        self.name_entry = ttk.Entry(self.top, width=50)
         self.name_entry.pack()
-        if card:
-            self.name_entry.insert(0, card["name"])
 
         tk.Label(self.top, text="Type:").pack()
-        self.type_entry = tk.Entry(self.top)
+        self.type_entry = ttk.Entry(self.top, width=50)
         self.type_entry.pack()
-        if card:
-            self.type_entry.insert(0, card["type"])
 
         tk.Label(self.top, text="Card Set:").pack()
-        self.card_set_entry = tk.Entry(self.top)
+        self.card_set_entry = ttk.Entry(self.top, width=50)
         self.card_set_entry.pack()
-        if card:
-            self.card_set_entry.insert(0, card["cardSet"])
 
         tk.Label(self.top, text="Description:").pack()
-        self.desc_entry = tk.Entry(self.top)
+        self.desc_entry = ttk.Entry(self.top, width=50)
         self.desc_entry.pack()
-        if card:
-            self.desc_entry.insert(0, card["description"])
 
         tk.Label(self.top, text="Base Weight:").pack()
-        self.base_weight_entry = tk.Entry(self.top)
+        self.base_weight_entry = ttk.Entry(self.top, width=50)
         self.base_weight_entry.pack()
-        if card:
-            self.base_weight_entry.insert(0, card.get("baseWeight", ""))
 
         tk.Label(self.top, text="Require Tags:").pack()
-        self.require_tags_entry = tk.Entry(self.top)
+        self.require_tags_entry = ttk.Entry(self.top, width=50)
         self.require_tags_entry.pack()
-        if card:
-            self.require_tags_entry.insert(0, json.dumps(card.get("requireTags", {})))
 
         tk.Label(self.top, text="Weight Multipliers:").pack()
-        self.weight_multipliers_entry = tk.Entry(self.top)
+        self.weight_multipliers_entry = ttk.Entry(self.top, width=50)
         self.weight_multipliers_entry.pack()
-        if card:
-            self.weight_multipliers_entry.insert(0, json.dumps(card.get("weightMultipliers", {})))
 
         tk.Label(self.top, text="Must Draw:").pack()
-        self.must_draw_var = tk.BooleanVar(value=card.get("mustDraw", False) if card else False)
-        self.must_draw_check = tk.Checkbutton(self.top, variable=self.must_draw_var)
+        self.must_draw_var = tk.BooleanVar(value=False)
+        self.must_draw_check = ttk.Checkbutton(self.top, variable=self.must_draw_var)
         self.must_draw_check.pack()
 
         tk.Label(self.top, text="Priority:").pack()
-        self.priority_entry = tk.Entry(self.top)
+        self.priority_entry = ttk.Entry(self.top, width=50)
         self.priority_entry.pack()
-        if card:
-            self.priority_entry.insert(0, card.get("priority", ""))
 
         tk.Label(self.top, text="Time Consumption:").pack()
-        self.time_consumption_entry = tk.Entry(self.top)
+        self.time_consumption_entry = ttk.Entry(self.top, width=50)
         self.time_consumption_entry.pack()
-        if card:
-            self.time_consumption_entry.insert(0, card.get("timeConsumption", ""))
 
         tk.Label(self.top, text="Date Restrictions:").pack()
-        self.date_restrictions_entry = tk.Entry(self.top)
+        self.date_restrictions_entry = ttk.Entry(self.top, width=50)
         self.date_restrictions_entry.pack()
-        if card:
-            self.date_restrictions_entry.insert(0, json.dumps(card.get("dateRestrictions", {})))
 
-        self.choices = card["choices"] if card else []
         tk.Button(self.top, text="Edit Choices", command=self.edit_choices).pack()
 
         tk.Button(self.top, text="Save", command=self.save).pack()
+
+    def fill_data(self):
+        if self.card:
+            self.id_entry.insert(0, self.card["id"])
+            self.name_entry.insert(0, self.card["name"])
+            self.type_entry.insert(0, self.card["type"])
+            self.card_set_entry.insert(0, self.card["cardSet"])
+            self.desc_entry.insert(0, self.card["description"])
+            self.base_weight_entry.insert(0, self.card.get("baseWeight", ""))
+            self.require_tags_entry.insert(0, json.dumps(self.card.get("requireTags", {})))
+            self.weight_multipliers_entry.insert(0, json.dumps(self.card.get("weightMultipliers", {})))
+            self.must_draw_var.set(self.card.get("mustDraw", False))
+            self.priority_entry.insert(0, self.card.get("priority", ""))
+            self.time_consumption_entry.insert(0, self.card.get("timeConsumption", ""))
+            self.date_restrictions_entry.insert(0, json.dumps(self.card.get("dateRestrictions", {})))
+            self.choices = self.card["choices"] if self.card else []
 
     def edit_choices(self):
         ChoicesDialog(self.top, self.choices)
@@ -189,16 +187,16 @@ class ChoicesDialog:
         for choice in self.choices:
             self.listbox.insert(tk.END, choice["text"])
 
-        btn_frame = tk.Frame(self.top)
+        btn_frame = ttk.Frame(self.top)
         btn_frame.pack(fill=tk.X)
 
-        add_btn = tk.Button(btn_frame, text="Add Choice", command=self.add_choice)
+        add_btn = ttk.Button(btn_frame, text="Add Choice", command=self.add_choice)
         add_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
-        edit_btn = tk.Button(btn_frame, text="Edit Choice", command=self.edit_choice)
+        edit_btn = ttk.Button(btn_frame, text="Edit Choice", command=self.edit_choice)
         edit_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
-        remove_btn = tk.Button(btn_frame, text="Remove Choice", command=self.remove_choice)
+        remove_btn = ttk.Button(btn_frame, text="Remove Choice", command=self.remove_choice)
         remove_btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
     def add_choice(self):
@@ -236,38 +234,38 @@ class ChoiceDialog:
         self.top.title("Edit Choice")
 
         tk.Label(self.top, text="Text:").pack()
-        self.text_entry = tk.Entry(self.top)
+        self.text_entry = ttk.Entry(self.top, width=50)
         self.text_entry.pack()
         if choice:
             self.text_entry.insert(0, choice["text"])
 
         tk.Label(self.top, text="Description:").pack()
-        self.desc_entry = tk.Entry(self.top)
+        self.desc_entry = ttk.Entry(self.top, width=50)
         self.desc_entry.pack()
         if choice:
             self.desc_entry.insert(0, choice["description"])
 
         tk.Label(self.top, text="Conditions:").pack()
-        self.conditions_entry = tk.Entry(self.top)
+        self.conditions_entry = ttk.Entry(self.top, width=50)
         self.conditions_entry.pack()
         if choice:
             self.conditions_entry.insert(0, json.dumps(choice.get("conditions", {})))
 
         tk.Label(self.top, text="Special Mechanism:").pack()
-        self.special_mechanism_entry = tk.Entry(self.top)
+        self.special_mechanism_entry = ttk.Entry(self.top, width=50)
         self.special_mechanism_entry.pack()
         if choice:
             self.special_mechanism_entry.insert(0, choice.get("specialMechanism", ""))
 
         tk.Label(self.top, text="Effects:").pack()
-        self.effects_entry = tk.Entry(self.top)
+        self.effects_entry = ttk.Entry(self.top, width=50)
         self.effects_entry.pack()
         if choice:
             self.effects_entry.insert(0, json.dumps(choice["effects"]))
 
         tk.Label(self.top, text="Consume Card:").pack()
         self.consume_card_var = tk.BooleanVar(value=choice.get("consumeCard", False) if choice else False)
-        self.consume_card_check = tk.Checkbutton(self.top, variable=self.consume_card_var)
+        self.consume_card_check = ttk.Checkbutton(self.top, variable=self.consume_card_var)
         self.consume_card_check.pack()
 
         tk.Button(self.top, text="Save", command=self.save).pack()
