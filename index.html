@@ -28,12 +28,36 @@
             </div>
         </div>
     </div>
-    <div id="game-container" class="game-container">
+    <div id="game-container" class="game-container" style="display:none;">
         <div class="main-content">
             <div id="card-display" class="card-display"></div>
             <button id="continue-button" class="continue-button">下一周</button>
         </div>
         <div id="tags-display" class="tags-display"></div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="main-menu">
+        <button id="startGameButton">开始游戏</button>
+        <button id="creatorButton">制作者的话</button>
+        <button id="changelogButton">更新日志</button>
+        <button id="cardlistButton">卡包列表</button>
+    </div>
+
+    <!-- Card List Menu -->
+    <div id="card-list-menu" class="card-list-menu" style="display:none;">
+        <button id="backButton">返回主菜单</button>
+        <div id="card-list-content">
+            <!-- 卡包列表内容 -->
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span id="close-popup" class="close-popup">&times;</span>
+            <div id="popup-text"></div>
+        </div>
     </div>
 </body>
 </html>

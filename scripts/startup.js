@@ -63,12 +63,90 @@ const scripts = [
   
       event.preventDefault();
     }, { passive: false });
+
+    initModal();
+    initMainMenu();
   }
+
+function initModal() {
+  const mainMenuButtons = {
+      creatorButton: "制作者的话内容...",
+      changelogButton: "更新日志内容...",
+  };
+
+  const popupModal = document.getElementById("popup-modal");
+  const popupText = document.getElementById("popup-text");
+  const closePopup = document.getElementById("close-popup");
+
+  Object.keys(mainMenuButtons).forEach(buttonId => {
+      console.log(buttonId);
+      document.getElementById(buttonId).addEventListener("click", () => {
+          popupText.innerHTML = mainMenuButtons[buttonId];
+          popupModal.style.display = "block";
+      });
+  });
+
+  closePopup.addEventListener("click", () => {
+      popupModal.style.display = "none";
+  });
+
+  window.addEventListener("click", event => {
+      if (event.target == popupModal) {
+          popupModal.style.display = "none";
+      }
+  });
+}
+
+function initMainMenu() {
+  document.getElementById('startGameButton').addEventListener('click', () => {
+      document.getElementById('main-menu').style.display = 'none';
+      document.getElementById('game-container').style.display = 'flex';
+  });
+
+  document.getElementById('cardlistButton').addEventListener('click', () => {
+      document.getElementById('main-menu').style.display = 'none';
+      document.getElementById('card-list-menu').style.display = 'block';
+      loadCardList();
+  });
+
+  document.getElementById('backButton').addEventListener('click', () => {
+      document.getElementById('card-list-menu').style.display = 'none';
+      document.getElementById('main-menu').style.display = 'flex';
+  });
+}
+
+function loadCardList() {
+  const cardListContent = document.getElementById('card-list-content');
+  const cards = [
+      { name: "卡包1", description: "这是卡包1的内容..." },
+      { name: "卡包2", description: "这是卡包2的内容..." },
+      { name: "卡包3", description: "这是卡包3的内容..." }
+  ];
+
+  cardListContent.innerHTML = ""; // Clear existing content
+
+  cards.forEach(card => {
+      const cardButton = document.createElement('button');
+      cardButton.textContent = card.name;
+      cardButton.addEventListener('click', () => {
+          showCardPopup(card.description);
+      });
+      cardListContent.appendChild(cardButton);
+  });
+}
+
+function showCardPopup(description) {
+  const popupModal = document.getElementById("popup-modal");
+  const popupText = document.getElementById("popup-text");
+
+  popupText.innerHTML = description;
+  popupModal.style.display = "block";
+}
+
+function isCarrotTest() {
+  return new URLSearchParams(window.location.search).has('carrot');
+}
   
-  function isCarrotTest() {
-    return new URLSearchParams(window.location.search).has('carrot');
-  }
-  
-  initializeApp();
-  
-  export { initializeApp };  
+initializeApp();
+
+export { initializeApp };  
