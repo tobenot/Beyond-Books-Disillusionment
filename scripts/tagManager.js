@@ -70,12 +70,27 @@ function getSubTagWeights(path) {
 }
 
 function applyTagModifier() {
-  const TagModifierConfig = tagsConfig.变化;
-  if (TagModifierConfig) {
-      for (const [path, TagModifierValue] of Object.entries(TagModifierConfig)) {
-          updateTag(path, TagModifierValue);
-      }
-  }
+	console.log("applyTagModifier", tagsConfig.变化);
+	const TagModifierConfig = tagsConfig.变化;
+
+	function traverseAndUpdate(config, path = '') {
+		for (const [key, value] of Object.entries(config)) {
+		const currentPath = path ? `${path}.${key}` : key;
+
+		if (value && value.value !== undefined) {
+			if (value.value !== 0) {
+			console.log("updateTag", currentPath, value.value);
+			updateTag(currentPath, value.value);
+			}
+		} else {
+			traverseAndUpdate(value, currentPath);
+		}
+		}
+	}
+
+	if (TagModifierConfig) {
+		traverseAndUpdate(TagModifierConfig);
+	}
 }
 
 window.updateTag = updateTag;

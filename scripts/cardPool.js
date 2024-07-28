@@ -82,7 +82,6 @@ function canDrawCard(card, tags) {
 			dateRestrictions.after &&
 			new Date(dateRestrictions.after) > currentDate
 		) {
-			console.log("时间限制不满足",new Date(dateRestrictions.after)," sdasda",currentDate);
 			return false;
 		}
 		if (
