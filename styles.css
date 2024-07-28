@@ -331,6 +331,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s;
+    padding: 10px;
 }
 
 .close-popup:hover,
