@@ -1,5 +1,5 @@
 function newGame() {
-  window.dateTime.addCountdown("高考", "2020-06-07");
+  window.dateTime.addCountdown("高考倒计时", "2020-06-07");
 }
 
 function startGame() {

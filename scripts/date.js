@@ -1,5 +1,5 @@
 // Initialize date
-let currentDate = new Date(2019, 7, 12); // August 12, 2019
+let currentDate = new Date(2019, 7, 13); // August 13, 2019
 const endDate = new Date(2020, 6, 7); // July 7, 2020
 let daysPassed = 0;
 const triggerTagModifierInterval = 3;
@@ -43,7 +43,7 @@ function updateDateDisplay() {
     const month = currentDate.getMonth() + 1;
     const day = currentDate.getDate();
     const formattedDate = `${year}年${month}月${day}日`;
-    document.getElementById("dateDisplay").innerText = `日历: ${formattedDate}`;
+    document.getElementById("dateDisplay").innerText = `${formattedDate}`;
     updateCountdowns();
 }
 
@@ -57,7 +57,7 @@ function updateCountdowns() {
 		const daysLeft = Math.ceil(
 			(countdown.date - currentDate) / (1000 * 60 * 60 * 24)
 		);
-		const countdownText = `${countdown.name} Countdown: ${daysLeft} days`;
+		const countdownText = `${countdown.name}: ${daysLeft} 天`;
 		countdownDisplay.innerHTML += `<div>${countdownText}</div>`;
 	});
 }
