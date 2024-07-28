@@ -166,6 +166,10 @@ function endGame(result) {
       `;
 	}
 	document.getElementById("continue-button").style.display = "none";
+  document.getElementById("main-menu-button").style.display = "block";
+  document.getElementById("main-menu-button").onclick = function() {
+      window.location.reload();
+  };
 }
 
 function collectTags(tags, currentPath, allTags) {

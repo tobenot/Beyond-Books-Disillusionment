@@ -19,6 +19,24 @@ body {
     font-size: 24px;
 }
 
+.common-button {
+    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
+    margin: 8px 0;
+    padding: 16px 32px;
+    font-size: 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.common-button:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
 /* loading indicator 样式 */
 .loading-indicator {
     display: flex;
@@ -219,7 +237,6 @@ body {
 
 /* main-menu 样式 */
 .main-menu {
-    display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
@@ -235,24 +252,6 @@ body {
 
 .main-menu:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.main-menu button {
-    font-family: 'VonwaonBitmap-12pxLite', Arial, sans-serif;
-    margin: 8px 0;
-    padding: 16px 32px;
-    font-size: 24px;
-    border: none;
-    border-radius: 6px;
-    background-color: #00bcd4;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.main-menu button:hover {
-    background-color: #0097a7;
-    transform: scale(1.05);
 }
 
 /* card-list-menu 样式 */
@@ -296,7 +295,6 @@ body {
 
 /* popup-modal 样式 */
 .popup-modal {
-    display: none;
     position: fixed;
     z-index: 1;
     left: 0;

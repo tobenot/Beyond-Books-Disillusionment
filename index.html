@@ -22,7 +22,7 @@
     <div id="loadingIndicator" class="loading-indicator">
         <div class="loader">
             <div class="loaderSpin"></div>
-            <div id="progressText">正在初始化...</div>
+            <div id="progressText"> </div>
             <div id="loadingBar">
                 <div id="progress" style="width: 0;"></div>
             </div>
@@ -32,18 +32,19 @@
         <div class="main-content">
             <div id="card-display" class="card-display"></div>
             <button id="continue-button" class="continue-button">下一周</button>
+            <button id="main-menu-button" class="common-button" style="display:none; background-color: #ce0000;">返回主菜单</button>
         </div>
         <div id="tags-display" class="tags-display"></div>
-    </div>
+    </div>    
 
     <!-- Main Menu -->
-    <div id="main-menu" class="main-menu">
+    <div id="main-menu" class="main-menu" style="display:none;">
         <h2 style="line-height: 1.3;">不止于纸上的故事<br>Beyond Books<br>幻灭篇<br>Disillusionment</h2>
         伟大的高三逆袭故事与心界起源<br><br>
-        <button id="creatorButton">制作者的话</button>
-        <button id="startGameButton">开始游戏</button>
-        <button id="changelogButton">更新日志 24.07.28</button>
-        <button id="cardlistButton">卡包列表</button>
+        <button id="creatorButton" class="common-button">制作者的话</button>
+        <button id="startGameButton" class="common-button">开始游戏</button>
+        <button id="changelogButton" class="common-button">更新日志 24.07.28</button>
+        <button id="cardlistButton" class="common-button">卡包列表</button>
         <footer>
             <br><a href="https://tobenot.top/Beyond-Books/">同作者游戏</a> | 
             <a href="https://qm.qq.com/q/pvKkFCvCFO">加群水群</a> | 
@@ -58,7 +59,7 @@
     </div>
 
     <!-- Popup Modal -->
-    <div id="popup-modal" class="popup-modal">
+    <div id="popup-modal" class="popup-modal" style="display:none;">
         <div class="popup-content">
             <span id="close-popup" class="close-popup">&times;关闭</span>
             <div id="popup-text"></div>
