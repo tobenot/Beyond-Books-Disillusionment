@@ -247,9 +247,7 @@ class CardEditor(tk.Toplevel):
 
     def add_choice(self):
         new_choice = {
-            "text": "新选项",
-            "conditions": {},
-            "effects": []
+            "text": "新选项"
         }
         self.card["choices"].append(new_choice)
         self.choices_listbox.insert(tk.END, new_choice["text"])

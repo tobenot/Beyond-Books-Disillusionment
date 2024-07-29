@@ -434,26 +434,5 @@
                 "description": "提前一个半小时写完了英语，趴着睡了好久。"
             }
         ]
-    },
-    {
-        "id": "17",
-        "name": "新卡牌",
-        "type": "event",
-        "cardSet": "基础",
-        "description": "",
-        "baseWeight": 1.0,
-        "choices": [
-            {
-                "text": "新选项",
-                "conditions": {},
-                "effects": []
-            },
-            {
-                "text": "新选项",
-                "conditions": {},
-                "effects": [],
-                "consumeCard": true
-            }
-        ]
     }
 ]
