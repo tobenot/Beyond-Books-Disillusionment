@@ -120,6 +120,9 @@ function getEffect(effect) {
 }
 
 async function gaokao() {
+    const continueButton = document.getElementById("continue-button");
+    continueButton.style.display = "none";
+
     const totalScore = examAll();
     const rank = await queryRank(totalScore);
     const resultText = `

@@ -200,11 +200,36 @@
         "text": "没错。",
         "effects": [
           "状态.精力.4",
-          "状态.快乐.8",
-          "变化.状态.精力.1"
+          "状态.快乐.8"
         ],
         "consumeCard": true,
-        "description": "我生命的燃料……不可或缺。<br><br><i>右边展示的'精力'和'快乐'有一个归零的话，就会浪费时间。</i><br><br>每3天都会自然恢复1点精力。"
+        "description": "我生命的燃料……不可或缺。<br><br><i>右边展示的'精力'和'快乐'有一个归零的话，就会浪费时间。</i>"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "name": "生活",
+    "type": "event",
+    "cardSet": "基础",
+    "description": "我准时在零点睡觉，六点半起来去上课。",
+    "mustDraw": true,
+    "priority": 999,
+    "timeConsumption": 0,
+    "choices": [
+      {
+        "text": "每日如此。",
+        "effects": [
+          "变化.状态.精力.1",
+          "变化.技能.语文.-8",
+          "变化.技能.数学.-8",
+          "变化.技能.英语.-8",
+          "变化.技能.物理.-8",
+          "变化.技能.化学.-8",
+          "变化.技能.生物.-8"
+        ],
+        "consumeCard": true,
+        "description": "每3天都会自然恢复1点精力，但是也会遗忘一些知识。"
       }
     ]
   },
@@ -215,7 +240,7 @@
     "cardSet": "基础",
     "description": "2019年8月12，这是高三开学的日子。",
     "mustDraw": true,
-    "priority": 999,
+    "priority": 998,
     "timeConsumption": 0,
     "choices": [
       {

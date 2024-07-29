@@ -1,4 +1,4 @@
-{
+﻿{
   "状态": {
     "快乐": {
       "value": 0,
@@ -13,16 +13,22 @@
   },
   "技能": {
     "语文": {
-      "value": 0,
-      "color": "orange"
+      "color": "brown"
     },
     "数学": {
-      "value": 0,
       "color": "blue"
     },
     "英语": {
-      "value": 0,
       "color": "red"
+    },
+    "物理": {
+      "color": "red"
+    },
+    "化学": {
+      "color": "purple"
+    },
+    "生物": {
+      "color": "green"
     }
   }
 }
