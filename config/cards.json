@@ -1,438 +1,459 @@
 [
-  {
-    "id": "1",
-    "name": "英语课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "英语……老天赏饭吃。",
-    "baseWeight": 1.0,
-    "choices": [
-      {
-        "text": "认真听",
-        "effects": [
-          "技能.英语.400",
-          "状态.精力.-2"
-        ],
-        "description": "当故事听了。"
-      },
-      {
-        "text": "玩",
-        "effects": [
-          "状态.快乐.4"
-        ],
-        "description": "这就是快乐所在。"
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "name": "数学课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "困难会让你痛苦，生活会使你屈服……只有数学不会，不会就是不会。",
-    "baseWeight": 1.0,
-    "choices": [
-      {
-        "text": "认真听",
-        "effects": [
-          "技能.数学.100",
-          "状态.精力.-2",
-          "状态.快乐.-4"
-        ],
-        "description": "实在是跟不上。"
-      },
-      {
-        "text": "玩",
-        "effects": [
-          "状态.快乐.2"
-        ],
-        "description": "又点我。"
-      }
-    ]
-  },
-  {
-    "id": "3",
-    "name": "语文课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "这门课到底学了什么。",
-    "baseWeight": 1.0,
-    "choices": [
-      {
-        "text": "认真听",
-        "effects": [
-          "技能.语文.200",
-          "状态.精力.-2",
-          "状态.快乐.1"
-        ],
-        "description": "老师还会说笑话八卦。"
-      },
-      {
-        "text": "玩",
-        "effects": [
-          "状态.快乐.3"
-        ],
-        "description": "休息一下。"
-      }
-    ]
-  },
-  {
-    "id": "4",
-    "name": "课外活动",
-    "type": "event",
-    "cardSet": "基础",
-    "requireTags": {
-      "状态.精力": "<20"
+    {
+        "id": "1",
+        "name": "英语课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "英语……老天赏饭吃。",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "认真听",
+                "effects": [
+                    "技能.英语.400",
+                    "状态.精力.-2"
+                ],
+                "description": "当故事听了。"
+            },
+            {
+                "text": "玩",
+                "effects": [
+                    "状态.快乐.4"
+                ],
+                "description": "这就是快乐所在。"
+            }
+        ]
     },
-    "description": "天涯何处无芳草。",
-    "baseWeight": 0.2,
-    "choices": [
-      {
-        "text": "认真参与",
-        "effects": [
-          "状态.快乐.4"
-        ],
-        "description": "散时如梦一场。"
-      },
-      {
-        "text": "摸鱼休息",
-        "effects": [
-          "状态.精力.2"
-        ],
-        "description": "我就不去了。"
-      }
-    ]
-  },
-  {
-    "id": "5",
-    "name": "图书馆学习",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "陪着几位同学。",
-    "baseWeight": 0.3,
-    "choices": [
-      {
-        "text": "专心学习主科",
-        "effects": [
-          "技能.数学.25",
-          "技能.语文.100",
-          "技能.英语.100",
-          "状态.快乐.-2",
-          "状态.精力.-2"
-        ],
-        "description": "都学学。"
-      },
-      {
-        "text": "专心学习副科",
-        "effects": [
-          "技能.物理.100",
-          "技能.化学.100",
-          "技能.生物.100",
-          "状态.快乐.-2",
-          "状态.精力.-2"
-        ],
-        "description": "都学学。"
-      },
-      {
-        "text": "看课外书",
-        "effects": [
-          "状态.快乐.2",
-          "状态.精力.2"
-        ],
-        "description": "放假是放假，上学是上学。"
-      }
-    ]
-  },
-  {
-    "id": "6",
-    "name": "体育课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "少有的体育课，什么时候放自由活动呢。",
-    "baseWeight": 0.3,
-    "choices": [
-      {
-        "text": "简单锻炼",
+    {
+        "id": "2",
+        "name": "数学课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "困难会让你痛苦，生活会使你屈服……只有数学不会，不会就是不会。",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "认真听",
+                "effects": [
+                    "技能.数学.100",
+                    "状态.精力.-2",
+                    "状态.快乐.-4"
+                ],
+                "description": "实在是跟不上。"
+            },
+            {
+                "text": "玩",
+                "effects": [
+                    "状态.快乐.2"
+                ],
+                "description": "又点我。"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "语文课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "这门课到底学了什么。",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "认真听",
+                "effects": [
+                    "技能.语文.200",
+                    "状态.精力.-2",
+                    "状态.快乐.1"
+                ],
+                "description": "老师还会说笑话八卦。"
+            },
+            {
+                "text": "玩",
+                "effects": [
+                    "状态.快乐.3"
+                ],
+                "description": "休息一下。"
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "name": "课外活动",
+        "type": "event",
+        "cardSet": "基础",
         "requireTags": {
-          "状态.精力": ">2"
+            "状态.精力": "<20"
         },
-        "effects": [
-          "状态.快乐.2",
-          "状态.精力.2"
-        ],
-        "description": "虽然开始是很难的，但是运动带来了多巴胺。"
-      },
-      {
-        "text": "拼命锻炼",
+        "description": "天涯何处无芳草。",
+        "baseWeight": 0.2,
+        "choices": [
+            {
+                "text": "认真参与",
+                "effects": [
+                    "状态.快乐.4"
+                ],
+                "description": "散时如梦一场。"
+            },
+            {
+                "text": "摸鱼休息",
+                "effects": [
+                    "状态.精力.2"
+                ],
+                "description": "我就不去了。"
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "name": "图书馆学习",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "陪着几位同学。",
+        "baseWeight": 0.3,
+        "choices": [
+            {
+                "text": "专心学习主科",
+                "effects": [
+                    "技能.数学.25",
+                    "技能.语文.100",
+                    "技能.英语.100",
+                    "状态.快乐.-2",
+                    "状态.精力.-2"
+                ],
+                "description": "都学学。"
+            },
+            {
+                "text": "专心学习副科",
+                "effects": [
+                    "技能.物理.100",
+                    "技能.化学.100",
+                    "技能.生物.100",
+                    "状态.快乐.-2",
+                    "状态.精力.-2"
+                ],
+                "description": "都学学。"
+            },
+            {
+                "text": "看课外书",
+                "effects": [
+                    "状态.快乐.2",
+                    "状态.精力.2"
+                ],
+                "description": "放假是放假，上学是上学。"
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "name": "体育课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "少有的体育课，什么时候放自由活动呢。",
+        "baseWeight": 0.3,
+        "choices": [
+            {
+                "text": "简单锻炼",
+                "requireTags": {
+                    "状态.精力": ">2"
+                },
+                "effects": [
+                    "状态.快乐.2",
+                    "状态.精力.2"
+                ],
+                "description": "虽然开始是很难的，但是运动带来了多巴胺。"
+            },
+            {
+                "text": "拼命锻炼",
+                "requireTags": {
+                    "状态.快乐": ">3",
+                    "状态.精力": ">3"
+                },
+                "effects": [
+                    "状态.快乐.-4",
+                    "状态.精力.3"
+                ],
+                "description": "受不了了！但是还要向前！"
+            },
+            {
+                "text": "回教室休息",
+                "requireTags": {
+                    "状态.精力": "<4"
+                },
+                "effects": [
+                    "状态.精力.2"
+                ],
+                "description": "精力不太够，还是回去吹空调吧。"
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "name": "引子",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "我是苏祁镜，飞雁市第一中学的奥赛生。",
+        "mustDraw": true,
+        "priority": 1000,
+        "timeConsumption": 0,
+        "choices": [
+            {
+                "text": "没错。",
+                "effects": [
+                    "状态.精力.4",
+                    "状态.快乐.8"
+                ],
+                "consumeCard": true,
+                "description": "我生命的燃料……不可或缺。<br><br><i>右边展示的'精力'和'快乐'有一个归零的话，就会浪费时间。</i>"
+            }
+        ]
+    },
+    {
+        "id": "16",
+        "name": "生活",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "我准时在零点睡觉，六点半起来去上课。",
+        "mustDraw": true,
+        "priority": 999,
+        "timeConsumption": 0,
+        "choices": [
+            {
+                "text": "每日如此。",
+                "effects": [
+                    "变化.状态.精力.1",
+                    "变化.技能.语文.-8",
+                    "变化.技能.数学.-8",
+                    "变化.技能.英语.-8",
+                    "变化.技能.物理.-8",
+                    "变化.技能.化学.-8",
+                    "变化.技能.生物.-8"
+                ],
+                "consumeCard": true,
+                "description": "每3天都会自然恢复1点精力，但是也会遗忘一些知识。"
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "name": "现状",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "2019年8月12，这是高三开学的日子。",
+        "mustDraw": true,
+        "priority": 998,
+        "timeConsumption": 0,
+        "choices": [
+            {
+                "text": "还记得在高二上的期末考……",
+                "effects": [
+                    "技能.语文.1666",
+                    "技能.数学.1206",
+                    "技能.英语.2124",
+                    "技能.物理.1338",
+                    "技能.化学.1111",
+                    "技能.生物.1316"
+                ],
+                "consumeCard": true,
+                "description": "语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。总共{{examAll:总分}}分。在最高的尖子班里倒数第二，真辛苦还有一位同学帮我垫着。</b>"
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "name": "高考",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "持续两天的高考开始了。",
+        "mustDraw": true,
+        "priority": 985,
+        "timeConsumption": 0,
+        "dateRestrictions": {
+            "after": "2020-07-07"
+        },
+        "choices": [
+            {
+                "text": "这是最后一战。",
+                "effects": [],
+                "specialMechanism": "gaokao",
+                "consumeCard": true,
+                "description": "渡海……"
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "name": "物理课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "老师很年轻。",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "认真听",
+                "effects": [
+                    "技能.物理.100",
+                    "状态.精力.-1"
+                ],
+                "description": "物理课还算好懂。"
+            },
+            {
+                "text": "玩",
+                "effects": [
+                    "技能.物理.50",
+                    "状态.快乐.4"
+                ],
+                "description": "物理课确实很有趣。"
+            }
+        ]
+    },
+    {
+        "id": "11",
+        "name": "化学课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "今天有实验看吗？",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "认真听",
+                "effects": [
+                    "技能.化学.100",
+                    "状态.精力.-2",
+                    "状态.快乐.-4"
+                ],
+                "description": "啊，为什么它是这样的呢？"
+            },
+            {
+                "text": "玩",
+                "effects": [
+                    "状态.快乐.4"
+                ],
+                "description": "哪有那么多时间去听？先玩再说。"
+            }
+        ]
+    },
+    {
+        "id": "12",
+        "name": "生物课",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "生物书很好看。",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "认真听",
+                "effects": [
+                    "技能.生物.200",
+                    "状态.精力.-2"
+                ],
+                "description": "真新鲜。"
+            },
+            {
+                "text": "玩",
+                "effects": [
+                    "状态.快乐.4"
+                ],
+                "description": "我就看看书。"
+            }
+        ]
+    },
+    {
+        "id": "13",
+        "name": "崩溃：快乐归零",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "道心破碎。",
         "requireTags": {
-          "状态.快乐": ">3",
-          "状态.精力": ">3"
+            "状态.快乐": "<1"
         },
-        "effects": [
-          "状态.快乐.-4",
-          "状态.精力.3"
-        ],
-        "description": "受不了了！但是还要向前！"
-      },
-      {
-        "text": "回教室休息",
+        "baseWeight": 1.0,
+        "mustDraw": true,
+        "priority": 900,
+        "timeConsumption": 6,
+        "choices": [
+            {
+                "text": "玩",
+                "effects": [
+                    "状态.快乐.4"
+                ],
+                "description": "我需要休息。"
+            }
+        ]
+    },
+    {
+        "id": "14",
+        "name": "崩溃：精力归零",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "疲惫不堪。",
         "requireTags": {
-          "状态.精力": "<4"
+            "状态.精力": "<1"
         },
-        "effects": [
-          "状态.精力.2"
-        ],
-        "description": "精力不太够，还是回去吹空调吧。"
-      }
-    ]
-  },
-  {
-    "id": "7",
-    "name": "引子",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "我是苏祁镜，飞雁市第一中学的奥赛生。",
-    "mustDraw": true,
-    "priority": 1000,
-    "timeConsumption": 0,
-    "choices": [
-      {
-        "text": "没错。",
-        "effects": [
-          "状态.精力.4",
-          "状态.快乐.8"
-        ],
-        "consumeCard": true,
-        "description": "我生命的燃料……不可或缺。<br><br><i>右边展示的'精力'和'快乐'有一个归零的话，就会浪费时间。</i>"
-      }
-    ]
-  },
-  {
-    "id": "16",
-    "name": "生活",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "我准时在零点睡觉，六点半起来去上课。",
-    "mustDraw": true,
-    "priority": 999,
-    "timeConsumption": 0,
-    "choices": [
-      {
-        "text": "每日如此。",
-        "effects": [
-          "变化.状态.精力.1",
-          "变化.技能.语文.-8",
-          "变化.技能.数学.-8",
-          "变化.技能.英语.-8",
-          "变化.技能.物理.-8",
-          "变化.技能.化学.-8",
-          "变化.技能.生物.-8"
-        ],
-        "consumeCard": true,
-        "description": "每3天都会自然恢复1点精力，但是也会遗忘一些知识。"
-      }
-    ]
-  },
-  {
-    "id": "8",
-    "name": "现状",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "2019年8月12，这是高三开学的日子。",
-    "mustDraw": true,
-    "priority": 998,
-    "timeConsumption": 0,
-    "choices": [
-      {
-        "text": "还记得在高二上的期末考……",
-        "effects": [
-          "技能.语文.1666",
-          "技能.数学.1206",
-          "技能.英语.2124",
-          "技能.物理.1338",
-          "技能.化学.1111",
-          "技能.生物.1316"
-        ],
-        "consumeCard": true,
-        "description": "语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。总共{{examAll:总分}}分。在最高的尖子班里倒数第二，真辛苦还有一位同学帮我垫着。</b>"
-      }
-    ]
-  },
-  {
-    "id": "9",
-    "name": "高考",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "持续两天的高考开始了。",
-    "mustDraw": true,
-    "priority": 985,
-    "timeConsumption": 0,
-    "dateRestrictions": {
-      "after": "2020-07-07"
+        "baseWeight": 1.0,
+        "mustDraw": true,
+        "priority": 900,
+        "timeConsumption": 6,
+        "choices": [
+            {
+                "text": "睡",
+                "effects": [
+                    "状态.精力.1"
+                ],
+                "description": "我需要休息。"
+            }
+        ]
     },
-    "choices": [
-      {
-        "text": "这是最后一战。",
-        "effects": [],
-        "specialMechanism": "gaokao",
-        "consumeCard": true,
-        "description": "渡海……"
-      }
-    ]
-  },
-  {
-    "id": "10",
-    "name": "物理课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "老师很年轻。",
-    "baseWeight": 1.0,
-    "choices": [
-      {
-        "text": "认真听",
-        "effects": [
-          "技能.物理.100",
-          "状态.精力.-1"
-        ],
-        "description": "物理课还算好懂。"
-      },
-      {
-        "text": "玩",
-        "effects": [
-          "技能.物理.50",
-          "状态.快乐.4"
-        ],
-        "description": "物理课确实很有趣。"
-      }
-    ]
-  },
-  {
-    "id": "11",
-    "name": "化学课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "今天有实验看吗？",
-    "baseWeight": 1.0,
-    "choices": [
-      {
-        "text": "认真听",
-        "effects": [
-          "技能.化学.100",
-          "状态.精力.-2",
-          "状态.快乐.-4"
-        ],
-        "description": "啊，为什么它是这样的呢？"
-      },
-      {
-        "text": "玩",
-        "effects": [
-          "状态.快乐.4"
-        ],
-        "description": "哪有那么多时间去听？先玩再说。"
-      }
-    ]
-  },
-  {
-    "id": "12",
-    "name": "生物课",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "生物书很好看。",
-    "baseWeight": 1.0,
-    "choices": [
-      {
-        "text": "认真听",
-        "effects": [
-          "技能.生物.200",
-          "状态.精力.-2"
-        ],
-        "description": "真新鲜。"
-      },
-      {
-        "text": "玩",
-        "effects": [
-          "状态.快乐.4"
-        ],
-        "description": "我就看看书。"
-      }
-    ]
-  },
-  {
-    "id": "13",
-    "name": "崩溃：快乐归零",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "道心破碎。",
-    "requireTags":{
-      "状态.快乐": "<1"
+    {
+        "id": "15",
+        "name": "考试",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "有一场常规考试。",
+        "baseWeight": 0.2,
+        "choices": [
+            {
+                "text": "好好考试",
+                "effects": [
+                    "技能.语文.26",
+                    "技能.数学.4",
+                    "技能.英语.50",
+                    "技能.物理.50",
+                    "技能.化学.20",
+                    "技能.生物.26",
+                    "状态.精力.-4",
+                    "状态.快乐.-4"
+                ],
+                "description": "语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。总共{{examAll:总分}}分。"
+            },
+            {
+                "text": "尽快写完",
+                "effects": [
+                    "状态.精力.2",
+                    "状态.快乐.4"
+                ],
+                "description": "提前一个半小时写完了英语，趴着睡了好久。"
+            }
+        ]
     },
-    "baseWeight": 1.0,
-    "mustDraw": true,
-    "priority": 900,
-    "timeConsumption": 6,
-    "choices": [
-      {
-        "text": "玩",
-        "effects": [
-          "状态.快乐.4"
-        ],
-        "description": "我需要休息。"
-      }
-    ]
-  },
-  {
-    "id": "14",
-    "name": "崩溃：精力归零",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "疲惫不堪。",
-    "requireTags":{
-      "状态.精力": "<1"
-    },
-    "baseWeight": 1.0,
-    "mustDraw": true,
-    "priority": 900,
-    "timeConsumption": 6,
-    "choices": [
-      {
-        "text": "睡",
-        "effects": [
-          "状态.精力.1"
-        ],
-        "description": "我需要休息。"
-      }
-    ]
-  },
-  {
-    "id": "15",
-    "name": "考试",
-    "type": "event",
-    "cardSet": "基础",
-    "description": "有一场常规考试。",
-    "baseWeight": 0.2,
-    "choices": [
-      {
-        "text": "好好考试",
-        "effects": [
-          "技能.语文.26",
-          "技能.数学.4",
-          "技能.英语.50",
-          "技能.物理.50",
-          "技能.化学.20",
-          "技能.生物.26",
-          "状态.精力.-4",
-          "状态.快乐.-4"
-        ],
-        "description": "语文{{exam150:技能.语文}}，数学{{exam150:技能.数学}}，英语{{exam150:技能.英语}}，物理{{exam100:技能.物理}}，化学{{exam100:技能.化学}}，生物{{exam100:技能.生物}}。总共{{examAll:总分}}分。"
-      },
-      {
-        "text": "尽快写完",
-        "effects": [
-          "状态.精力.2",
-          "状态.快乐.4"
-        ],
-        "description": "提前一个半小时写完了英语，趴着睡了好久。"
-      }
-    ]
-  }
+    {
+        "id": "17",
+        "name": "新卡牌",
+        "type": "event",
+        "cardSet": "基础",
+        "description": "",
+        "baseWeight": 1.0,
+        "choices": [
+            {
+                "text": "新选项",
+                "conditions": {},
+                "effects": []
+            },
+            {
+                "text": "新选项",
+                "conditions": {},
+                "effects": [],
+                "consumeCard": true
+            }
+        ]
+    }
 ]
