@@ -95,6 +95,7 @@ function initModal() {
     `,
 		changelogButton:  `
         <p>只有比较大的更新在这里展示</p>
+		<p><strong>2024年7月30日</strong> 做了基础卡包的平常日程部分。</p>
         <p><strong>2024年7月28日</strong> 做了主菜单，基本做好了基础机制，做了基础卡包里面的上课部分。你可以靠着一路崩溃考过去。</p>
         <p><strong>2024年7月25日</strong> 抽卡和数值框架搭好</p>
         <p><strong>2024年7月23日</strong> 开坑！</p>
